@@ -52,6 +52,7 @@ floating_modifier $mod
 ###################
 ###################
 bindsym $mod+Return exec termite 
+bindsym $mod+shift+Return exec i3-msg 'workspace $WS5; exec /usr/bin/termite'
 
 ## Kill focused window
 ######################
@@ -155,14 +156,14 @@ bindsym $mod+a focus parent
 ## Assing variables workspace
 #############################
 #############################
-set $WS1 
-set $WS2  
-set $WS3 
-set $WS4 
-set $WS5 
+set $WS1  
+set $WS2 
+set $WS3 
+set $WS4 
+set $WS5 
 set $WS6  
-set $WS7 
-set $WS8 
+set $WS7 
+set $WS8 
 set $WS9 IX
 set $WS10 HDMI
 
@@ -211,14 +212,15 @@ bindsym $mod+Shift+0 move container to workspace $WS10
 ## Colocar programas em específicas containers
 ##############################################
 ##############################################
-assign [class="^Termite$"]      $WS2
-assign [class="^Telegram"]      $WS3
-assign [class="^Firefox$"]      $WS4
-assign [class="^Chromium$"]     $WS4
-assign [class="^Pcmanfm$"]      $WS5
+assign [class="^Termite$"]      $WS1
+assign [class="^Telegram"]      $WS2
+assign [class="^Firefox$"]      $WS3
+assign [class="^Chromium$"]     $WS3
+assign [class="^Pcmanfm$"]      $WS4
 assign [class="libreoffice"]    $WS6
-assign [class="^Evince$"]       $WS6
-assign [class="^Pavucontrol$"]  $WS8
+assign [class="^Mousepad"]      $WS6
+assign [class="^Vlc"]           $WS7
+assign [class="^qBittorrent"]   $WS8
 
 ## Reload the configuration file
 ################################
@@ -284,14 +286,30 @@ hide_edge_borders smart
 ## Alterar as cores das janelas     
 ###############################
 ###############################
-# class                 border  backgr. text    indicator child_border
-client.focused          #000000 #840808 #BEBEBE #484E50   #840808
-client.focused_inactive #000000 #3c3c3c #BEBEBE #484E50   #3c3c3c
-client.unfocused        #3C3C3C #3c3c3c #BEBEBE #292D2E   #3c3c3c
-client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
-lient.placeholder       #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+    ## Janela focada divdindo a tela
+    # class                 border  backgr. text    indicator child_border
+    client.focused          #000000 #840808 #BEBEBE #484E50   #840808
 
-client.background       #ffffff
+    ## Janelas ativas em segundo plano
+    # class                 border  backgr. text    indicator child_border
+    client.focused_inactive #000000 #3c3c3c #BEBEBE #484E50   #3c3c3c
+
+    ## Janelas não focadas dividindo a tela, quando lado-lado (3⁰ plano)
+    # class                 border  backgr. text    indicator child_borde
+    client.unfocused        #3C3C3C #3c3c3c #BEBEBE #292D2E   #3c3c3c
+
+    ## Um cliente que tem sua dica de urgência ativada.
+    # class                 border  backgr. text    indicator child_borde
+    client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
+
+    ## O plano de fundo e a cor do texto são usados para desenhar o conteúdo da 
+    ## janela do marcador de posição (ao restaurar layouts). Borda e indicador são ignorados.
+    # class                 border  backgr. text    indicator child_borde
+    client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+
+    ## Cor do plano de fundo que será usada para pintar o plano de fundo da janela do cliente em cima da qual o cliente será processado. 
+    ## Apenas os clientes que não cobrem toda a área desta janela expõem a cor. 
+    client.background       #ffffff
 
 ## Start i3bar to display a workspace bar (plus the system information i3status
 ## Finds out, if available)
@@ -344,7 +362,7 @@ bindsym $mod+Pause mode "$mode_system"
 set $mode_display Ext Screen (v) VGA ON, (h) HDMI ON, (x) VGA OFF, (y) HDMI OFF
 mode "$mode_display" {
     bindsym v exec --no-startup-id xrandr --output VGA1 --auto --left-of LVDS1, mode "default"
-    bindsym h exec --no-startup-id xrandr --output HDMI2 --auto --left-of eDP1, mode "default"
+    bindsym h exec --no-startup-id xrandr --output HDMI2 --auto --right-of eDP1, mode "default"
     bindsym x exec --no-startup-id xrandr --output VGA1 --auto --off, mode "default"
     bindsym y exec --no-startup-id xrandr --output HDMI2 --auto --off, mode "default"
 
@@ -374,7 +392,7 @@ exec_always conky -c ~/.conky/conky_half_maldesktraarbo
 #########################
 #########################
 bindsym $mod+ctrl+f exec firefox &
-bindsym $mod+ctrl+m exec termite -e mocp & 
+bindsym $mod+ctrl+m exec termite -e mocp 
 bindsym $mod+ctrl+a exec termite -e alsamixer
 bindsym $mod+ctrl+c exec chromium &
 bindsym $mod+ctrl+p exec pcmanfm &
