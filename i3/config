@@ -52,15 +52,15 @@ floating_modifier $mod
 ###################
 ###################
 bindsym $mod+Return exec termite 
-bindsym $mod+shift+Return exec i3-msg 'workspace $WS5; exec /usr/bin/termite'
+## Inicia um específico termite
+    bindsym $mod+Shift+Return exec i3-msg 'workspace $WS5; exec termite'
 
 ## Kill focused window
 ######################
 ######################
 bindsym $mod+Shift+q kill
-
 ## Ativa o comando xkill
-bindsym $mod+shift+x exec xkill &
+    bindsym $mod+Shift+x exec xkill &
 
 ## Start dmenu (a program launcher)
 ###################################
@@ -281,7 +281,7 @@ new_float pixel 1
 # oculta bordas em espaços de trabalho com apenas uma janela visível, 
 # mas mantém-los em espaços de trabalho com várias janelas visíveis.
 # hide_edge_borders none|vertical|horizontal|both|smart
-hide_edge_borders smart
+hide_edge_borders both
 
 ## Alterar as cores das janelas     
 ###############################
