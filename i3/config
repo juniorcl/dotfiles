@@ -52,8 +52,8 @@ floating_modifier $mod
 ###################
 ###################
 bindsym $mod+Return exec termite 
-## Inicia um específico termite
-    bindsym $mod+Shift+Return exec i3-msg 'workspace $WS5; exec termite'
+ ## Inicia um específico termite
+    bindsym $mod+Shift+i exec i3-msg 'workspace 5: ; exec /usr/bin/termite'
 
 ## Kill focused window
 ######################
@@ -163,8 +163,8 @@ set $WS4 
 set $WS5 
 set $WS6  
 set $WS7 
-set $WS8 
-set $WS9 IX
+set $WS8 
+set $WS9 
 set $WS10 HDMI
 
 ## Coloca as janelas em um específico monitor
@@ -217,10 +217,11 @@ assign [class="^Telegram"]      $WS2
 assign [class="^Firefox$"]      $WS3
 assign [class="^Chromium$"]     $WS3
 assign [class="^Pcmanfm$"]      $WS4
+assign [class="^Mousepad"]      $WS5
 assign [class="libreoffice"]    $WS6
-assign [class="^Mousepad"]      $WS6
 assign [class="^Vlc"]           $WS7
-assign [class="^qBittorrent"]   $WS8
+assign [class="^Lxmusic"]       $WS8
+assign [class="^qBittorrent"]   $WS9
 
 ## Reload the configuration file
 ################################
@@ -392,7 +393,6 @@ exec_always conky -c ~/.conky/conky_half_maldesktraarbo
 #########################
 #########################
 bindsym $mod+ctrl+f exec firefox &
-bindsym $mod+ctrl+m exec termite -e mocp 
 bindsym $mod+ctrl+a exec termite -e alsamixer
 bindsym $mod+ctrl+c exec chromium &
 bindsym $mod+ctrl+p exec pcmanfm &
@@ -408,4 +408,4 @@ bindsym $mod+ctrl+l exec /usr/bin/libreoffice
 #exec --no-startup-id dropbox 
 #exec --no-startup-id nm-applet
 #exec --no-startup-id volumeicon
-#exec --no-startup-id mate-power-manager
+exec --no-startup-id mate-power-manager
