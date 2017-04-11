@@ -165,21 +165,13 @@ set $WS6 
 set $WS7 
 set $WS8 
 set $WS9 
-set $WS10 HDMI
+set $WS10 Aux.
 
 ## Coloca as janelas em um específico monitor
 #############################################
 #############################################
-#workspace $WS1 output eDP1
-#workspace $WS2 output eDP1
-#workspace $WS3 output eDP1
-#workspace $WS4 output eDP1
-#workspace $WS5 output eDP1
-#workspace $WS6 output eDP1
-#workspace $WS7 output eDP1
-#workspace $WS8 output eDP1
-#workspace $WS9 output HDMI2
 workspace $WS10 output HDMI2 
+workspace $WS10 output DP1
 
 ## Switch to workspace
 ######################
@@ -212,7 +204,7 @@ bindsym $mod+Shift+0 move container to workspace $WS10
 ## Colocar programas em específicas containers
 ##############################################
 ##############################################
-assign [class="^Termite$"]      $WS1
+#assign [class="^Termite$"]      $WS1
 assign [class="^Telegram"]      $WS2
 assign [class="^Firefox$"]      $WS3
 assign [class="^Chromium$"]     $WS3
@@ -360,11 +352,11 @@ bindsym $mod+Pause mode "$mode_system"
 #########################################
 #########################################
 # Set the shortcuts and what they do
-set $mode_display Ext Screen (v) VGA ON, (h) HDMI ON, (x) VGA OFF, (y) HDMI OFF
+set $mode_display Ext Screen (v) DP1 ON, (h) HDMI ON, (x) DP1 OFF, (y) HDMI OFF
 mode "$mode_display" {
-    bindsym v exec --no-startup-id xrandr --output VGA1 --auto --left-of LVDS1, mode "default"
+    bindsym v exec --no-startup-id xrandr --output DP1 --auto --left-of eDP1, mode "default"
     bindsym h exec --no-startup-id xrandr --output HDMI2 --auto --right-of eDP1, mode "default"
-    bindsym x exec --no-startup-id xrandr --output VGA1 --auto --off, mode "default"
+    bindsym x exec --no-startup-id xrandr --output DP1 --auto --off, mode "default"
     bindsym y exec --no-startup-id xrandr --output HDMI2 --auto --off, mode "default"
 
     # back to normal: Enter or Escape
@@ -404,6 +396,7 @@ bindsym $mod+ctrl+l exec /usr/bin/libreoffice
 ## Icones que iniciam na barra do i3wm e papal de parede
 ########################################################
 ########################################################
+exec --no-startup-id setxkbmap -model abnt2 -layout br -variant abnt2
 #exec --no-startup-id megasync
 #exec --no-startup-id dropbox 
 #exec --no-startup-id nm-applet
