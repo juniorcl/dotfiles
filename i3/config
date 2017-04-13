@@ -207,7 +207,7 @@ bindsym $mod+Shift+0 move container to workspace $WS10
 #assign [class="^Termite$"]      $WS1
 assign [class="^Telegram"]      $WS2
 assign [class="^Firefox$"]      $WS3
-assign [class="^Chromium$"]     $WS3
+#assign [class="^Chromium$"]     $WS3
 assign [class="^Pcmanfm$"]      $WS4
 assign [class="^Mousepad"]      $WS5
 assign [class="libreoffice"]    $WS6
