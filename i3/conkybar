@@ -47,12 +47,22 @@ TEXT
         
         {"full_text" : " ${mem} ${memperc}%"},
         
-        {"full_text" : "  ${battery_percent BAT1}% ${battery_time BAT1}"
-                ${if_match ${battery_percent BAT1}<50}
-                        , "color" : "\#ff0000"
-                ${endif}
-        },
+        ${if_match ${battery_percent BAT1}<50}    
+
+            {"full_text" :  
+            
+            ${if_match ${battery_percent BAT1}<25} "  
+           
+            ${else} "  
+           
+            ${endif} ${battery_percent BAT1}% ${battery_time BAT1}", "color" : "\#ff0000" },
         
+        ${else}    
+        
+            {"full_text" : "  ${battery_percent BAT1}% ${battery_time BAT1}"},
+        
+        ${endif}
+
         {"full_text": " ${wireless_link_qual_perc wlp2s0}%"},
         
         {"full_text" : "  ${time %d.%m}"},
