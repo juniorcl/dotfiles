@@ -160,16 +160,17 @@ set $WS1 
 set $WS2 
 set $WS3 
 set $WS4 
-set $WS5 
+set $WS5 
 set $WS6  
-set $WS7 
-set $WS8 
-set $WS9 
+set $WS7 
+set $WS8 
+set $WS9 IX
 set $WS10 Aux.
 
 ## Coloca as janelas em um específico monitor
 #############################################
 #############################################
+workspace $WS10 output HDMI1
 workspace $WS10 output HDMI2 
 workspace $WS10 output DP1
 
@@ -207,13 +208,12 @@ bindsym $mod+Shift+0 move container to workspace $WS10
 #assign [class="^Termite$"]      $WS1
 assign [class="^Telegram"]      $WS2
 assign [class="^Firefox$"]      $WS3
-#assign [class="^Chromium$"]     $WS3
 assign [class="^Pcmanfm$"]      $WS4
-assign [class="^Mousepad"]      $WS5
+assign [class="^Keepassx2$"]    $WS5
 assign [class="libreoffice"]    $WS6
 assign [class="^Vlc"]           $WS7
-assign [class="^Lxmusic"]       $WS8
-assign [class="^qBittorrent"]   $WS9
+assign [class="^Lxmusic"]       $WS7
+assign [class="^qBittorrent"]   $WS8
 
 ## Reload the configuration file
 ################################
