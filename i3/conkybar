@@ -46,22 +46,24 @@ TEXT
         {"full_text" : " ${acpitemp}°C"},
         
         {"full_text" : " ${mem} ${memperc}%"},
-        
-        ${if_match ${battery_percent BAT1}<50}    
 
-            {"full_text" :  
-            
-            ${if_match ${battery_percent BAT1}<25} "  
-           
-            ${else} "  
-           
-            ${endif} ${battery_percent BAT1}% ${battery_time BAT1}", "color" : "\#ff0000" },
+        {"full_text" : " ${swap} ${swapperc}%"},
         
-        ${else}    
+        #${if_match ${battery_percent BAT1}<50}    
+
+       #     {"full_text" :  
+            
+         #   ${if_match ${battery_percent BAT1}<25} "  ${battery_percent BAT1}% ${battery_time BAT1}", "color" : "\#ff0000" },
+           
+           # ${else} "  
+           
+          #  ${endif} 
+        
+       # ${else}    
         
             {"full_text" : "  ${battery_percent BAT1}% ${battery_time BAT1}"},
         
-        ${endif}
+       # ${endif}
 
         {"full_text": " ${wireless_link_qual_perc wlp2s0}%"},
         
