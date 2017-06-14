@@ -160,9 +160,9 @@ set $WS1 
 set $WS2 
 set $WS3 
 set $WS4 
-set $WS5 
-set $WS6  
-set $WS7 
+set $WS5 
+set $WS6 
+set $WS7  
 set $WS8 
 set $WS9 IX
 set $WS10 Aux.
@@ -209,10 +209,8 @@ bindsym $mod+Shift+0 move container to workspace $WS10
 assign [class="^Telegram"]      $WS2
 assign [class="^Firefox$"]      $WS3
 assign [class="^Pcmanfm$"]      $WS4
-assign [class="^Keepassx2$"]    $WS5
-assign [class="libreoffice"]    $WS6
-assign [class="^Vlc"]           $WS7
-assign [class="^Lxmusic"]       $WS7
+assign [class="^Vlc"]           $WS6
+assign [class="^libreoffice"]    $WS7
 assign [class="^qBittorrent"]   $WS8
 
 ## Reload the configuration file
@@ -233,7 +231,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 ## Resize window (you can also use the mouse for that) 
 ######################################################
 ######################################################
-mode " " {
+mode " " {
     # These bindings trigger as soon as you enter the resize mode
 
     # Pressing left will shrink the window’s width.
@@ -256,7 +254,7 @@ mode " " {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode " "
+bindsym $mod+r mode " "
 
 ## Border style for new windows new_window normal|none|pixel
 ############################################################
@@ -352,7 +350,7 @@ bindsym $mod+Pause mode "$mode_system"
 #########################################
 #########################################
 # Set the shortcuts and what they do
-set $mode_display Ext Screen (v) DP1 ON, (h) HDMI ON, (x) DP1 OFF, (y) HDMI OFF
+set $mode_display  Ext Screen (v) DP1 ON, (h) HDMI ON, (x) DP1 OFF, (y) HDMI OFF
 mode "$mode_display" {
     bindsym v exec --no-startup-id xrandr --output DP1 --auto --left-of eDP1, mode "default"
     bindsym h exec --no-startup-id xrandr --output HDMI2 --auto --right-of eDP1, mode "default"
@@ -374,7 +372,7 @@ bindsym Print exec scrot '%d.%m.%Y_%H.%M_screenshot.png' -e 'mv $f ~/Imagens/'
 ## Iniciar com o papael de parede
 #################################
 #################################
-exec_always feh --bg-scale ~/Imagens/Wallpaper/wallhaven-424863.jpg
+exec_always feh --bg-center ~/Imagens/Wallpaper/deixe.png
 
 ## Inicia o conky
 #################
@@ -392,6 +390,7 @@ bindsym $mod+ctrl+u exec pavucontrol
 bindsym $mod+ctrl+v exec vlc &
 bindsym $mod+ctrl+t exec ~/.Telegram/Telegram
 bindsym $mod+ctrl+l exec /usr/bin/libreoffice
+bindsym $mod+ctrl+i exec virtualbox
 
 ## Icones que iniciam na barra do i3wm e papal de parede
 ########################################################
