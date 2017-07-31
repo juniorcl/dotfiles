@@ -162,9 +162,9 @@ set $WS3 
 set $WS4 
 set $WS5 
 set $WS6 
-set $WS7  
-set $WS8 
-set $WS9 IX
+set $WS7 
+set $WS8  
+set $WS9 
 set $WS10 Aux.
 
 ## Coloca as janelas em um específico monitor
@@ -308,6 +308,7 @@ hide_edge_borders both
 ###############################################################################
 bar {
     status_command ~/.config/i3/conky-i3bar
+    #status_command i3blocks
     position top
     tray_output primary
     font pango:Cantarrell 9
@@ -355,7 +356,7 @@ mode "$mode_display" {
     bindsym v exec --no-startup-id xrandr --output DP1 --auto --left-of eDP1, mode "default"
     bindsym h exec --no-startup-id xrandr --output HDMI2 --auto --right-of eDP1, mode "default"
     bindsym x exec --no-startup-id xrandr --output DP1 --auto --off, mode "default"
-    bindsym y exec --no-startup-id xrandr --output HDMI2 --auto --off, mode "default"
+    bindsym y exec --notartup-id xrandr --output HDMI2 --auto --off, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -372,12 +373,23 @@ bindsym Print exec scrot '%d.%m.%Y_%H.%M_screenshot.png' -e 'mv $f ~/Imagens/'
 ## Iniciar com o papael de parede
 #################################
 #################################
-exec_always feh --bg-center ~/Imagens/Wallpaper/deixe.png
+exec_always feh --bg-scale ~/Imagens/Wallpaper/tribal-hd-wallpapers-free.jpg
 
 ## Inicia o conky
 #################
 #################
-exec_always conky -c ~/.conky/conky_half_maldesktraarbo
+#exec_always conky -c ~/.conky/conky_half_maldesktraarbo
+
+## Constraining floating window size
+####################################
+####################################
+floating_minimum_size 75 x 50
+floating_maximum_size -1 x -1
+
+## Janelas que iniciam floating
+########################################################
+########################################################
+#for_window [class="VirtualBox"] floating enable
 
 ## Atalhos para programas 
 #########################
