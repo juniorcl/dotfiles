@@ -23,55 +23,67 @@ DZEN="dzen2 -ta r -fn $DZEN_FONT -bg $DZEN_BG -fg $DZEN_FG -dock"
 ## Dzen2 Info
 #############
 #############
-Root()
+function Kernel()
+{
+    kernel=$(uname -a | awk '{print $3}')
+    echo -n "^fg($DZEN_FG) $kernel ^fg() $SEPARATOR"
+    return
+}
+
+function Root()
 {
     root_free=$(df -h / | sed '1d' | awk '{print $4}')
-    echo "^fg($DZEN_FG) $root_free ^fg() $SEPARATOR" 
+    echo -n "^fg($DZEN_FG) $root_free ^fg() $SEPARATOR" 
     return
 }
 
-Home()
+function Home()
 {
     home_free=$(df -h /home | sed '1d' | awk '{print $4}')
-    echo "^fg($DZEN_FG) $home_free ^fg() $SEPARATOR" 
+    echo -n "^fg($DZEN_FG) $home_free ^fg() $SEPARATOR" 
     return
 }
 
-Mem()
+function Ram()
 {
     ram=$(free -mh | awk '{print $3}' | sed '1d' | sed '2d')
-    echo "^fg($DZEN_FG) $ram ^fg() $SEPARATOR"
+    echo -n "^fg($DZEN_FG) $ram ^fg() $SEPARATOR"
     return
 }
 
-Swap()
+function Swap()
 {
-    swap=
-
-Time()
-{
-    hour=$(date +"%H:%M")
-    echo "^fg($DZEN_FG) $hour ^fg() $SEPARATOR"
+    swap=$(free -mh | awk '{print $3}' | sed '1d' | sed '1d')
+    echo -n "^fg($DZEN_FG) $swap ^fg() $SEPARATOR"
     return
 }
 
-Date()
+function Date()
 {
     date="$(date +"%d").$(date +"%b")"
-    echo "^fg($DZEN_FG) $date ^fg() $SEPARATOR"
+    echo -n "^fg($DZEN_FG) $date ^fg() $SEPARATOR"
     return
 }
 
+function Time()
+{
+    hour=$(date +"%H:%M")
+    echo -n "^fg($DZEN_FG) $hour ^fg()"
+    return
+}
 
 ## Print Dzen2
 ##############
 ##############
 Print()
 {
+    Kernel
     Root
     Home
-    Time
+    Ram
+    Swap
     Date
+    Time
     return
 }
 
