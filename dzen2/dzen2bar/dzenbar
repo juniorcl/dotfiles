@@ -13,11 +13,11 @@
 ICON_PATH="$HOME/.dzen2/icon"
 DZEN_BG="#770000"
 DZEN_FG="#BEBEBE"
-DZEN_FONT="-*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-*"
+DZEN_FONT="-*-terminus-medium-r-*-*-10-*-*-*-*-*-iso10646-*"
 SLEEP=2
-X=550
+X=430
 Y=0
-WIDTH=815
+WIDTH=2000
 HEIGHT=20
  
 SEPARATOR="^bg(#000000)^fg($DZEN_BG)^i($ICON_PATH/r_arr.xbm)^fg()^bg()^bg($DZEN_BG) "
@@ -30,7 +30,7 @@ DZEN="dzen2 -ta r -fn $DZEN_FONT -x $X -y $Y -w $WIDTH -h $HEIGHT"
 #############
 function Kernel()
 {
-    kernel=$(uname -a | awk '{print $3}')
+    kernel=$(uname -r | grep -Eo '([0-9]*)\.([0-9]*)\.([0-9]*)\-([0-9]*)')
     echo -n "$SEPARATOR ^i($ICON_PATH/arch.xbm)^fg($DZEN_FG) $kernel  ^fg()^bg()"
     return
 }
@@ -54,16 +54,16 @@ function Home()
 function Ram()
 {
     ram=$(free -mh | awk '{print $3}' | sed '1d' | sed '2d')
-    #ram_porcent=$(free | grep Mem | awk '{print $3/$2 * 100}')
-    echo -n "$SEPARATOR2 ^i($ICON_PATH/ram.xbm)^fg($DZEN_FG) $ram  ^fg()^bg()"
+    ram_porcent=$(free | grep Mem | awk '{print $3/$2 * 100}' | grep -Eo '([0-9]*)\.([0-9].)')
+    echo -n "$SEPARATOR2 ^i($ICON_PATH/ram.xbm)^fg($DZEN_FG) $ram $ram_porcent%  ^fg()^bg()"
     return
 }
 
 function Swap()
 {
     swap=$(free -mh | awk '{print $3}' | sed '1d' | sed '1d')
-    #swap_porcent=$(free | grep Swap | awk '{print $3/$2 * 100}')
-    echo -n "$SEPARATOR ^i($ICON_PATH/swap.xbm) $swap  ^fg()^bg()"
+    swap_porcent=$(free | grep Swap | awk '{print $3/$2 * 100}' | grep -Eo '([0-9]*)')
+    echo -n "$SEPARATOR ^i($ICON_PATH/swap.xbm) $swap $swap_porcent%  ^fg()^bg()"
     return
 }
 
@@ -80,14 +80,21 @@ function Battery
     fi
 }
 
+function Brightness()
+{
+    brightness=$(xbacklight -get | grep -Eo '([0-9]*)\.([0-9].)')
+    echo -n "$SEPARATOR ^i($ICON_PATH/brightness.xbm) $brightness%  ^fg()^bg()"
+    return
+}     
+
 function Wifi()
 {
     wifi_name=$(nmcli dev | awk '{print $4}' | sed '3,4d' | sed '1d')
     if test -n $wifi_name
     then
-        echo -n "$SEPARATOR ^i($ICON_PATH/wifi.xbm) $wifi_name  ^fg()^bg()"
+        echo -n "$SEPARATOR2 ^i($ICON_PATH/wifi.xbm) $wifi_name  ^fg()^bg()"
     else
-        echo -n "$SEPARATOR Not Connected  ^fg()^bg()"
+        echo -n "$SEPARATOR2 Not Connected  ^fg()^bg()"
     fi
     return
 }
@@ -95,14 +102,14 @@ function Wifi()
 function Date()
 {
     date="$(date +"%d").$(date +"%b")"
-    echo -n "$SEPARATOR2 ^i($ICON_PATH/calendar.xbm) $date  ^fg()^bg()"
+    echo -n "$SEPARATOR ^i($ICON_PATH/calendar.xbm) $date  ^fg()^bg()"
     return
 }
 
 function Time()
 {
     hour=$(date +"%H:%M")
-    echo -n "$SEPARATOR ^i($ICON_PATH/clock.xbm) $hour  ^fg()^bg()"
+    echo -n "$SEPARATOR2 ^i($ICON_PATH/clock.xbm) $hour  ^fg()^bg()"
     return
 }
 
@@ -117,6 +124,7 @@ Print()
     Ram
     Swap
     Battery
+    Brightness
     Wifi
     Date
     Time
