@@ -63,7 +63,8 @@ hc keybind $Mod-Control-Up      resize up +$resizestep
 hc keybind $Mod-Control-Right   resize right +$resizestep
 
 # tags
-tag_names=( {1..9} )
+#tag_names=( {1..9} )
+tag_names=( h e r b s t l u f )
 tag_keys=( {1..9} 0 )
 
 hc rename default "${tag_names[0]}" || true
@@ -111,7 +112,7 @@ hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
 hc set frame_border_active_color '#222222'
 hc set frame_border_normal_color '#101010'
-hc set frame_bg_normal_color '#565656' 		#new window
+hc set frame_bg_normal_color '#454545' 		#new window
 hc set frame_bg_active_color '#700000' 		#new window
 hc set frame_border_width 0  			#border of both window
 hc set always_show_frame 1
@@ -122,9 +123,9 @@ hc set frame_gap 2
 hc attr theme.active.color '#700000' 		#'#9fbc00'
 hc attr theme.normal.color '#454545'
 hc attr theme.urgent.color orange
-hc attr theme.inner_width 1
+hc attr theme.inner_width 0
 hc attr theme.inner_color black
-hc attr theme.border_width 3 			#border betwen active windows
+hc attr theme.border_width 2 			#border betwen active windows
 hc attr theme.floating.border_width 4
 hc attr theme.floating.outer_width 1
 hc attr theme.floating.outer_color black
@@ -160,8 +161,8 @@ herbstclient set tree_style '╾│ ├└╼─┐'
 # hc detect_monitors
 
 # find the panel
-#panel=$HOME/dzenbar 
-panel=~/.config/herbstluftwm/panel.sh
+#panel=~/.config/herbstluftwm/panel.sh
+panel=~/.config/herbstluftwm/herbstluftbar
 [ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
 for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
     # start it on each monitor
@@ -176,13 +177,23 @@ hc keybind Print spawn scrot '%d.%m.%Y_%H.%M_screenshot.png' -e 'mv $f ~/Picture
 ## Wallpaper
 #################################
 #################################
-spawn feh --bg-scale ~/Imagens/Wallpaper/tribal-hd-wallpapers-free.jpg
+hc spawn feh --bg-scale $HOME/Pictures/Wallpapers/wallhaven-393107.png
 
 ## Screen brightness controls
 #############################
 #############################
 hc keybind XF86MonBrightnessUp spawn xbacklight -inc 10
 hc keybind XF86MonBrightnessDown spawn xbacklight -dec 10
+
+## Atomatically move program to tag
+###################################
+###################################
+hc rule class=Firefox tag=${tag_names[2]}
+hc rule class=Pcmanfm tag=${tag_names[3]}
+hc rule class=Telegram tag=${tag_names[1]}
+hc rule class=Vlc tag=${tag_names[5]}
+hc rule class=qBittorrent tag=${tag_names[7]}
+hc rule class=libreoffice tag=${tag_names[6]}
 
 ## Exec Program
 ###############
