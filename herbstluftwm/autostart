@@ -191,21 +191,21 @@ hc keybind XF86MonBrightnessDown spawn xbacklight -dec 10
 hc rule class=Firefox tag=${tag_names[2]}
 hc rule class=Pcmanfm tag=${tag_names[3]}
 hc rule class=Telegram tag=${tag_names[1]}
-hc rule class=Vlc tag=${tag_names[5]}
+hc rule class=vlc tag=${tag_names[5]}
 hc rule class=qBittorrent tag=${tag_names[7]}
 hc rule class=libreoffice tag=${tag_names[6]}
 
 ## Exec Program
 ###############
 ###############
-hc keybind $Mod-Ctrl-f spawn firefox
-hc keybind $Mod-Ctrl-t spawn $HOME/.Telegram/Telegram
+hc keybind $Mod-Alt-f spawn firefox
+hc keybind $Mod-Alt-t spawn $HOME/.Telegram/Telegram
 hc keybind $Mod-d spawn rofi -show run -separator-style dash -config /home/junior/.config/rofi/rofi.conf
-hc keybind $Mod-Ctrl-a spawn termite -e alsamixer
-hc keybind $Mod-Ctrl-c spawn chromium &
-hc keybind $Mod-Ctrl-p spawn pcmanfm &
-hc keybind $Mod-Ctrl-u spawn pavucontrol
-hc keybind $Mod-Ctrl-v spawn vlc &
-hc keybind $Mod-Ctrl+l spawn /usr/bin/libreoffice
-hc keybind $Mod-Ctrl-i spawn virtualbox
+hc keybind $Mod-Alt-a spawn termite -e alsamixer
+hc keybind $Mod-Alt-c spawn chromium &
+hc keybind $Mod-Alt-p spawn pcmanfm &
+hc keybind $Mod-Alt-u spawn pavucontrol
+hc keybind $Mod-Alt-v spawn vlc &
+hc keybind $Mod-Alt+l spawn /usr/bin/libreoffice
+hc keybind $Mod-Alt-i spawn virtualbox
 
