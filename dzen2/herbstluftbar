@@ -83,8 +83,8 @@ function Ram()
 function Swap()
 {
     swap=$(free -mh | awk '{print $3}' | sed '1d' | sed '1d')
-    swap_percent=$(free | grep Swap | awk '{print $3/$2 * 100}' | grep -Eo '([0-9]*)')
-    echo -n "^fg($RED)^i($ICON_PATH/swap.xbm)^fg() $swap $swap_percent% "
+    #swap_percent=$(free | grep Swap | awk '{print $3/$2 * 100}' | grep -Eo '([0-9]*)')
+    echo -n "^fg($RED)^i($ICON_PATH/swap.xbm)^fg() $swap " #$swap_percent% "
     return
 }
 
@@ -102,9 +102,9 @@ function Battery
 
     if test $charging == "Full"
     then 
-        echo -n "^fg($RED)^i($ICON_PATH/battery.xbm)^fg() $battery "
+	echo -n "^fg($RED)^i($ICON_PATH/battery.xbm)^fg() $battery "
     else
-        echo -n "^fg($RED)^i($ICON_PATH/charging.xbm)^fg() $battery "
+	echo -n "^fg($RED)^i($ICON_PATH/charging.xbm)^fg() $battery " 
     fi
     return
 }
@@ -145,7 +145,7 @@ function Time()
 ## Print Dzen2
 ##############
 ##############
-Print()
+function Print()
 {
     Kernel
     Cpu
