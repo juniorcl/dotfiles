@@ -120,7 +120,7 @@ hc set frame_bg_transparent 1
 hc set frame_transparent_width 1 		#new window
 hc set frame_gap 2
 
-hc attr theme.active.color '#700000' 		#'#9fbc00'
+hc attr theme.active.color '#700000' 		
 hc attr theme.normal.color '#454545'
 hc attr theme.urgent.color orange
 hc attr theme.inner_width 0
@@ -130,8 +130,8 @@ hc attr theme.floating.border_width 4
 hc attr theme.floating.outer_width 1
 hc attr theme.floating.outer_color black
 hc attr theme.active.inner_color '#000000'
-hc attr theme.active.outer_color '#000000' 	#'#3E4A00'
-hc attr theme.background_color '#700000' 	#'#141414'
+hc attr theme.active.outer_color '#000000'
+hc attr theme.background_color '#700000' 	
 
 hc set window_gap 0
 hc set frame_padding 0
@@ -179,6 +179,11 @@ hc keybind Print spawn scrot '%d.%m.%Y_%H.%M_screenshot.png' -e 'mv $f ~/Picture
 #################################
 hc spawn feh --bg-scale $HOME/Pictures/Wallpapers/wallhaven-393107.png
 
+## keyboard as abnt2
+####################
+####################
+hc spawn setxkbmap -model abnt2 -layout br -variant abnt2
+
 ## Screen brightness controls
 #############################
 #############################
@@ -190,10 +195,10 @@ hc keybind XF86MonBrightnessDown spawn xbacklight -dec 10
 ###################################
 hc rule class=Firefox tag=${tag_names[2]}
 hc rule class=Pcmanfm tag=${tag_names[3]}
-hc rule class=Telegram tag=${tag_names[1]}
-hc rule class=vlc tag=${tag_names[5]}
+hc rule title=Telegram tag=${tag_names[1]}
+hc rule class=Vlc tag=${tag_names[5]}
 hc rule class=qBittorrent tag=${tag_names[7]}
-hc rule class=libreoffice tag=${tag_names[6]}
+hc rule title=LibreOffice tag=${tag_names[6]}
 
 ## Exec Program
 ###############
@@ -202,6 +207,7 @@ hc keybind $Mod-Alt-f spawn firefox
 hc keybind $Mod-Alt-t spawn $HOME/.Telegram/Telegram
 hc keybind $Mod-d spawn rofi -show run -separator-style dash -config /home/junior/.config/rofi/rofi.conf
 hc keybind $Mod-Alt-a spawn termite -e alsamixer
+hc keybind $Mod-Alt-r spawn termite -e ranger
 hc keybind $Mod-Alt-c spawn chromium &
 hc keybind $Mod-Alt-p spawn pcmanfm &
 hc keybind $Mod-Alt-u spawn pavucontrol
