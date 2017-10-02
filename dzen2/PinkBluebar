@@ -8,7 +8,6 @@
 #############################################################################################################################
 ############################################################################################################################# 
 
-
 ## Dzen Config
 ##############
 ##############
@@ -16,9 +15,6 @@ monitor=${1:-0}
 geometry=( $(herbstclient monitor_rect "$monitor") )
 
 ICON_PATH="$HOME/.dzen2/icon"
-BLACK='#000000'
-BLACK2='#151515'
-RED='#770000'
 GRAY='#BEBEBE'
 GRAY2='#222222'
 WHITE='#FFFFFF'
@@ -26,18 +22,12 @@ PINK='#FF00FF'
 BLUE='#0066CC'
 
 FONT="-*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-*"
-SLEEP=1
 X=${geometry[0]} #430
 Y=${geometry[1]}
 WIDTH=${geometry[2]} #$(herbstclient monitor_rect | awk '{print $3}')
 HEIGHT=16
  
 herbstclient pad $monitor $HEIGHT
-
-#SEPARATOR="^bg(#000000)^fg($DZEN_BLACK)^i($ICON_PATH/r_arr.xbm)^fg()^bg()^bg($RED) "
-#SEPARATOR2="^bg($RED)^fg(#000000)^i($ICON_PATH/r_arr.xbm)^fg()^bg()^bg(#000000) "
-
-DZEN="dzen2 -ta l -fn $FONT -bg $BLACK2 -fg $GRAY -x $X -y $Y -w $WIDTH -h $HEIGHT"
 
 ## Dzen2 Info
 #############
@@ -163,7 +153,7 @@ function Wifi()
 
 function Date()
 {
-    date="$(date +"%d").$(date +"%b")"
+    date=$(date +"%d").$(date +"%b")
     echo -n "^fg($PINK)^i($ICON_PATH/calendar.xbm)^fg() $date"
     return
 }
@@ -180,6 +170,6 @@ function Time()
 ##############
 while true                                                                                                                       
 do
-    echo "^p(10)$(Kernel) $(Cpu) $(Root) $(Home) $(Ram) $(Swap) ^p(206)$(Tag) ^pa(870)$(Temp) $(Battery) $(Brightness) $(Wifi) $(Date) $(Time)"
-    sleep $SLEEP
-done | $DZEN
+    echo "^pa(10)$(Kernel) $(Cpu) $(Root) $(Home) $(Ram) $(Swap) ^pa(615)$(Tag) ^pa(870)$(Temp) $(Battery) $(Brightness) $(Wifi) $(Date) $(Time)"
+    sleep 1s
+done | dzen2 -ta l -fn $FONT -bg $BLACK2 -fg $GRAY -x $X -y $Y -w $WIDTH -h $HEIGHT
