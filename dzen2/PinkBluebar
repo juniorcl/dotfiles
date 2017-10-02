@@ -124,14 +124,17 @@ function Temp()
 function Battery
 {
     battery=$(acpi -b | grep -Po "\d{1,}%")
-    charging=$(acpi -b | grep -Eo "(arging|Full)")
+    batterystatus=$(acpi -b | grep -Eo "(Charging|Full)")
     timeofcharging=$(acpi -b | awk '{print $5}' | grep -Eo '([0-9]+:([0-9]+))')
 
-    if test $charging == "Full"
+    if test $batterystatus == "Full"
     then 
 	    echo -n "^fg($PINK)^i($ICON_PATH/battery.xbm)^fg() $battery"
+    elif test $batterystatus == "Charging"
+    then
+        echo -n "^fg($PINK)^i($ICON_PATH/charging.xbm)^fg() $battery $timeofcharging"
     else
-	    echo -n "^fg($PINK)^i($ICON_PATH/charging.xbm)^fg() $battery $timeofcharging" 
+	    echo -n "^fg($PINK)^i($ICON_PATH/discharging.xbm)^fg() $battery $timeofcharging" 
     fi
     return
 }
@@ -174,6 +177,6 @@ function Time()
 ##############
 while true                                                                                                                       
 do
-    echo "^pa(10)$(Kernel) $(Cpu) $(Root) $(Home) $(Ram) $(Swap) ^pa(615)$(Tag) ^pa(870)$(Temp) $(Battery) $(Brightness) $(Wifi) $(Date) $(Time)"
+    echo "^pa(10)$(Kernel) $(Cpu) $(Root) $(Home) $(Ram) $(Swap) ^pa(615)$(Tag) ^pa(905)$(Temp) $(Battery) $(Brightness) $(Wifi) $(Date) $(Time)"
     sleep 1
 done | dzen2 -ta l -fn $FONT -bg $BLACK2 -fg $GRAY -x $X -y $Y -w $WIDTH -h $HEIGHT
