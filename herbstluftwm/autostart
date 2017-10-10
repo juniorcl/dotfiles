@@ -78,14 +78,17 @@ hc keybind $Mod-Control-Right   resize right +$resizestep
 #######
 #######
 #tag_names=( {1..9} )
-tag_names=( h e r b s t l u f )
+#tag_names=( "h" "e" "r" "b" "s" "t" "l" "u" "t" "w")
+tag_names=( {1..9} 0 )
 tag_keys=( {1..9} 0 )
 
 hc rename default "${tag_names[0]}" || true
-for i in ${!tag_names[@]} ; do
+for i in ${!tag_names[@]}
+do
     hc add "${tag_names[$i]}"
     key="${tag_keys[$i]}"
-    if ! [ -z "$key" ] ; then
+    if ! test -z "$key" 
+    then
         hc keybind "$Mod-$key" use_index "$i"
         hc keybind "$Mod-Shift-$key" move_index "$i"
     fi
@@ -139,25 +142,26 @@ GRAY2='#222222'
 RED='#700000'
 PINK='#FF00FF'
 BLUE='#0066CC'
+YELLOW='#d6d600'
 
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
-hc set frame_border_active_color $GRAY2
-hc set frame_border_normal_color $BLACK2
-hc set frame_bg_normal_color $BLUE      #new frame
-hc set frame_bg_active_color $PINK 		#new window
-hc set frame_border_width 0  			#border of both window
-hc set always_show_frame 1
-hc set frame_bg_transparent 1
-hc set frame_transparent_width 1 		#new window
+hc set frame_border_active_color $YELLOW
+hc set frame_border_normal_color $GRAY2
+hc set frame_bg_normal_color $GRAY      #bg of new frame
+hc set frame_bg_active_color $BLACK 	#bg of new window
+hc set frame_border_width 1  			#border of both windows
+hc set always_show_frame 1              #show or not the new frame 
+hc set frame_bg_transparent 1           #if the bg is transparent
+hc set frame_transparent_width 0 		#width of bg
 hc set frame_gap 2
 
-hc attr theme.active.color $PINK
-hc attr theme.normal.color $BLUE
+hc attr theme.active.color $YELLOW
+hc attr theme.normal.color $GRAY2
 hc attr theme.urgent.color orange
 hc attr theme.inner_width 0
 hc attr theme.inner_color black
-hc attr theme.border_width 1 			#border betwen active windows
+hc attr theme.border_width 0 			#border betwen active windows
 hc attr theme.floating.border_width 1
 hc attr theme.floating.outer_width 0
 hc attr theme.floating.outer_color black
@@ -197,13 +201,36 @@ herbstclient set tree_style '╾│ ├└╼─┐'
 # do multi monitor setup here, e.g.:
 # hc set_monitors 1280x1024+0+0 1280x1024+1280+0
 # or simply:
-# hc detect_monitors
+hc detect_monitors
 
+## To use TV as monitor
+#######################
+#######################
+if test $(xrandr | grep HDMI2 | awk '{print $2}') == "connected"
+then
+    hc set_monitors 1366x768+0+0 1920x1080+1366+0 
+
+    hc keybind $Mod-Ctrl-t spawn xrandr --output HDMI2 --auto --right-of eDP1
+    hc keybind $Mod-Ctrl-y spawn xrandr --output HDMI2 --auto --off
+fi
+
+## Navigate between monitors
+############################
+############################
+hc keybind $Mod-Shift-h or / shift left / \
+    chain , lock , shift_to_monitor -l , focus_monitor -l , unlock
+hc keybind $Mod-Shift-j or / shift down / \
+    chain , lock , shift_to_monitor -d , focus_monitor -d , unlock
+hc keybind $Mod-Shift-k or / shift up / \
+    chain , lock , shift_to_monitor -u , focus_monitor -u , unlock
+hc keybind $Mod-Shift-l or / shift right / \
+    chain , lock , shift_to_monitor -r , focus_monitor -r , unlock
+    
 ## Find the panel
 #################
 #################
 #panel=~/.config/herbstluftwm/panel.sh
-panel=~/.config/herbstluftwm/herbstluftbar
+panel=~/.dzen2/herbstluftbar
 [ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
 for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
     # start it on each monitor
@@ -213,12 +240,12 @@ done
 ## Screenshot: Print Screen ou Screenshooter
 ############################################
 ############################################
-hc keybind Print spawn scrot '%d.%m.%Y_%H.%M_screenshot.png' -e 'mv $f ~/Pictures/'
+hc keybind Print spawn scrot -q 70 '%d.%m.%Y_%H.%M_screenshot.png' -e 'mv $f ~/Pictures/'
  
 ## Wallpaper
 #################################
 #################################
-hc spawn feh --bg-scale $HOME/Pictures/Wallpapers/wallhaven-554217.jpg
+hc spawn feh --bg-scale $HOME/Pictures/Wallpapers/wallhaven-206334.jpg
 
 ## keyboard as abnt2
 ####################
@@ -255,4 +282,3 @@ hc keybind $Mod-Alt-u spawn pavucontrol
 hc keybind $Mod-Alt-v spawn vlc &
 hc keybind $Mod-Alt+l spawn /usr/bin/libreoffice
 hc keybind $Mod-Alt-i spawn virtualbox
-
