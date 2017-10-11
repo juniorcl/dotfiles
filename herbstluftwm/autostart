@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# this is a simple config for herbstluftwm
+## cØnƒig Øƒ hΞЯbŞtĿuƒtwm
 
 hc() {
     herbstclient "$@"
@@ -64,7 +64,7 @@ hc keybind $Mod-Control-space split explode
 ## Resizing frames
 ##################
 ##################
-resizestep=0.05
+resizestep=0.02
 hc keybind $Mod-Control-h       resize left +$resizestep
 hc keybind $Mod-Control-j       resize down +$resizestep
 hc keybind $Mod-Control-k       resize up +$resizestep
@@ -77,9 +77,8 @@ hc keybind $Mod-Control-Right   resize right +$resizestep
 ## Tags
 #######
 #######
-#tag_names=( {1..9} )
-#tag_names=( "h" "e" "r" "b" "s" "t" "l" "u" "t" "w")
-tag_names=( {1..9} 0 )
+#tag_names=( {1..9} 0 )
+tag_names=( "h" "3" "r" "b" "s" "7" "l" "u" "f" "t" ) 
 tag_keys=( {1..9} 0 )
 
 hc rename default "${tag_names[0]}" || true
@@ -148,20 +147,20 @@ hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
 hc set frame_border_active_color $YELLOW
 hc set frame_border_normal_color $GRAY2
-hc set frame_bg_normal_color $GRAY      #bg of new frame
-hc set frame_bg_active_color $BLACK 	#bg of new window
-hc set frame_border_width 1  			#border of both windows
-hc set always_show_frame 1              #show or not the new frame 
-hc set frame_bg_transparent 1           #if the bg is transparent
-hc set frame_transparent_width 0 		#width of bg
-hc set frame_gap 2
+hc set frame_bg_normal_color $GRAY          #bg of new frame
+hc set frame_bg_active_color $BLACK 	    #bg of new window
+hc set frame_border_width 1  			    #border of both windows
+hc set always_show_frame 1                  #show or not the new frame 
+hc set frame_bg_transparent 1               #if the bg is transparent
+hc set frame_transparent_width 0 		    #width of bg
+hc set frame_gap 1
 
 hc attr theme.active.color $YELLOW
 hc attr theme.normal.color $GRAY2
 hc attr theme.urgent.color orange
 hc attr theme.inner_width 0
 hc attr theme.inner_color black
-hc attr theme.border_width 0 			#border betwen active windows
+hc attr theme.border_width 0 			    #border betwen active windows
 hc attr theme.floating.border_width 1
 hc attr theme.floating.outer_width 0
 hc attr theme.floating.outer_color black
@@ -180,8 +179,8 @@ hc set mouse_recenter_gap 0
 ########
 hc unrule -F
 #hc rule class=XTerm tag=3 # move all xterms to tag 3
-hc rule focus=on # normally focus new clients
-#hc rule focus=off # normally do not focus new clients
+#hc rule focus=on # normally focus new clients
+hc rule focus=off # normally do not focus new clients
 # give focus to most common terminals
 #hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
@@ -201,13 +200,14 @@ herbstclient set tree_style '╾│ ├└╼─┐'
 # do multi monitor setup here, e.g.:
 # hc set_monitors 1280x1024+0+0 1280x1024+1280+0
 # or simply:
-hc detect_monitors
+#hc detect_monitors
 
 ## To use TV as monitor
 #######################
 #######################
 if test $(xrandr | grep HDMI2 | awk '{print $2}') == "connected"
 then
+    #my tv is on the notebook right
     hc set_monitors 1366x768+0+0 1920x1080+1366+0 
 
     hc keybind $Mod-Ctrl-t spawn xrandr --output HDMI2 --auto --right-of eDP1
@@ -230,9 +230,10 @@ hc keybind $Mod-Shift-l or / shift right / \
 #################
 #################
 #panel=~/.config/herbstluftwm/panel.sh
-panel=~/.dzen2/herbstluftbar
+panel=~/.config/dzen2/herbstluftbar
 [ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
-for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
+for monitor in $(herbstclient list_monitors | cut -d: -f1)
+do
     # start it on each monitor
     "$panel" $monitor &
 done
