@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 #It has been configured to be used in herbstluftwm
+killall dzen2 
 #############################################################################################################################
 ############################################################################################################################# 
 ###                                                                                                                       ###
@@ -9,13 +10,9 @@
 ############################################################################################################################# 
 
 
-## Dzen Config
-##############
-##############
-monitor=${1:-0}
-geometry=( $(herbstclient monitor_rect "$monitor") )
-
-ICON_PATH="$HOME/.dzen2/icon"
+## Customization of dzen2
+#########################
+#########################
 BLACK='#000000'
 BLACK2='#151515'
 RED='#770000'
@@ -26,13 +23,9 @@ PINK='#FF00FF'
 BLUE='#0066CC'
 YELLOW='#d6d600'
 
+ICON_PATH="$HOME/.config/dzen2/icon"
 FONT="-*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-*"
-X=${geometry[0]} 
-Y=${geometry[1]}
-WIDTH=${geometry[2]} 
-HEIGHT=16
  
-herbstclient pad $monitor $HEIGHT
 
 ## Dzen2 Info
 #############
@@ -43,21 +36,11 @@ Tag()
     for i in "${TAGS[@]}"
     do
         case ${i:0:1} in
-            '#')
-                echo -n "^bg($BLACK)^fg($YELLOW)"
-                ;;
-            '+')
-                echo -n "^bg(#9CA668)^fg(#141414)"
-                ;;
-            ':')
-                echo -n "^bg($BLACK)^fg($WHITE)"
-                ;;
-            '!')
-                echo -n "^bg(#FF0675)^fg(#141414)"
-                ;;
-             *)
-                echo -n "^bg()^fg()"
-                ;;
+            '#') echo -n "^bg($BLACK)^fg($YELLOW)" ;;
+            '+') echo -n "^bg(#9CA668)^fg(#141414)" ;;
+            ':') echo -n "^bg($BLACK)^fg($WHITE)" ;;
+            '!') echo -n "^bg(#FF0675)^fg(#141414)" ;;
+             *)  echo -n "^bg()^fg()" ;;
         esac
   
         echo -n "^ca(1,\"${herbstclient_command[@]:-herbstclient}\" "
@@ -116,8 +99,7 @@ Temp()
 
 Battery()
 {
-    battery=$(acpi -b | grep -Po "\d{1,}%")
-    batterystatus=$(acpi -b | grep -Eo "(Charging|Full)")
+    batterystatus=$(acpi -b | grep -Eo "(Charging|Full)") 
     timeofcharging=$(acpi -b | awk '{print $5}' | grep -Eo '([0-9]+:([0-9]+))')
 
     case $batterystatus in 
@@ -138,7 +120,7 @@ Wifi()
     #wifi_percent=$(nmcli dev wifi | grep $(nmcli dev | awk '{print $4}' | sed '3,4d' | sed '1d') | awk '{print $7}')
     case $wifi_name in
         "BlackMamba") echo -n "^i($ICON_PATH/wifi.xbm) $wifi_name" ;;
-        *) echo -n "Not Connected" ;;
+        *) echo -n "^i($ICON_PATH/wifi.xbm) Not Connected" ;;
     esac
 }
 
@@ -154,19 +136,41 @@ Time()
     echo -n "^i($ICON_PATH/clock.xbm) $hour"
 }
 
+
+## Position of dzen2
+####################
+####################
+monitor=${1:-0}
+geometry=( $(herbstclient monitor_rect "$monitor") ) 
+WIDTH=${geometry[2]} 
+HEIGHT=16
+
+## Bar on top
+#X=${geometry[0]} 
+#Y=${geometry[1]}
+#herbstclient pad $monitor $HEIGHT
+
+## Bar on bottom
+X=${geometry[1]} 
+Y=${geometry[3]}
+herbstclient pad $monitor 0 0 $HEIGHT 0
+
+
 ## Print Dzen2
 ##############
 ##############
-# change bar size depending on wifi name
+# change bar size depending on wifi name and battery status
+battery=$(acpi -b | grep -Po "\d{1,}%")
 wifi_name=$(nmcli dev | awk '{print $4}' | sed '3,4d' | sed '1d')
 case $wifi_name in 
-    "BlackMamba") pa=912 ;;
-    *) pa=880 ;;
+    "BlackMamba") if test $battery == "100%"; then pa=916; else pa=884; fi ;;
+    *) if test $battery == "100%"; then pa=894; else pa=894; fi ;;
 esac
     
 while true                                                                                                                       
 do
-    echo "^fg($BLACK)^bg($GRAY2)^pa(0) $(Kernel) $(Cpu) $(Root) $(Home) $(Ram) $(Swap)^fg()^bg()^fg($GRAY2)^i($ICON_PATH/rightarrow.xbm)^i($ICON_PATH/rightarrow2.xbm)^fg() \
-^pa(615)$(Tag) ^pa($pa)^fg($GRAY2)^i($ICON_PATH/leftarrow2.xbm)^i($ICON_PATH/leftarrow.xbm)^fg()^bg($GRAY2)^fg($BLACK)$(Temp) $(Battery) $(Brightness) $(Wifi) $(Date) $(Time)^fg() "
+    echo "^pa(0)^fg($BLACK)^bg($GRAY2) $(Kernel) $(Cpu) $(Root) $(Home) $(Ram) $(Swap)^fg()^bg()^fg($GRAY2)^i($ICON_PATH/rightarrow.xbm)\
+^i($ICON_PATH/rightarrow2.xbm)^fg() ^pa(615)$(Tag) ^pa($pa)^fg($GRAY2)^i($ICON_PATH/leftarrow2.xbm)^i($ICON_PATH/leftarrow.xbm)^fg()\
+^bg($GRAY2)^fg($BLACK)$(Temp) $(Battery)$(Brightness) $(Wifi) $(Date) $(Time)^fg() "
     sleep 1
 done | dzen2 -ta l -fn $FONT -bg $BLACK -fg $GRAY -x $X -y $Y -w $WIDTH -h $HEIGHT
