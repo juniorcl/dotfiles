@@ -1,5 +1,5 @@
 PROMPT='%F{red}%n%f@%F{red}%m%f %F{red}%0~%f %# '
-RPROMPT='[%F{yellow}%?%f]'
+RPROMPT='[%F{pink}%?%f]'
 
 ## history
 ##########
@@ -13,7 +13,9 @@ HISTFILE=~/.zsh_history
 ## alias
 ########
 ########
-alias i3='startx /home/junior/.xinitrc i3'
-alias herbst='startx $HOME/.xinitrc herbst'
+alias i3='startx $HOME/.xinitrc i3'
+alias hl='startx $HOME/.xinitrc hlwm'
+alias spectr='startx $HOME/.xinitrc spectr'
 alias ptbr='setxkbmap -model abnt2 -layout br -variant abnt2'
 alias ls='ls --color --human-readable'
+alias hc='herbstclient'
