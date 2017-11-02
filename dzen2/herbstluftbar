@@ -17,7 +17,7 @@ BLACK='#000000'
 BLACK2='#151515'
 RED='#770000'
 GRAY='#BEBEBE'
-GRAY2='#222222'
+GRAY2='#2b2b2b'  
 WHITE='#FFFFFF'
 PINK='#FF00FF'
 BLUE='#0066CC'
@@ -99,6 +99,7 @@ Temp()
 
 Battery()
 {
+    battery=$(acpi -b | grep -Po "\d{1,}%")
     batterystatus=$(acpi -b | grep -Eo "(Charging|Full)") 
     timeofcharging=$(acpi -b | awk '{print $5}' | grep -Eo '([0-9]+:([0-9]+))')
 
@@ -118,8 +119,11 @@ Brightness()
 Wifi()
 {
     #wifi_percent=$(nmcli dev wifi | grep $(nmcli dev | awk '{print $4}' | sed '3,4d' | sed '1d') | awk '{print $7}')
+    wifi_name=$(nmcli dev | awk '{print $4}' | sed '3,4d' | sed '1d') 
     case $wifi_name in
         "BlackMamba") echo -n "^i($ICON_PATH/wifi.xbm) $wifi_name" ;;
+        "Matrix") echo -n "^i($ICON_PATH/wifi.xbm) $wifi_name" ;; 
+        "AP08-CCT-ANEXO" ) echo -n "^i($ICON_PATH/wifi.xbm) $wifi_name" ;;  
         *) echo -n "^i($ICON_PATH/wifi.xbm) Not Connected" ;;
     esac
 }
@@ -159,13 +163,14 @@ herbstclient pad $monitor 0 0 $HEIGHT 0
 ## Print Dzen2
 ##############
 ##############
-# change bar size depending on wifi name and battery status
+wifi_name=$(nmcli dev | awk '{print $4}' | sed '3,4d' | sed '1d') 
 battery=$(acpi -b | grep -Po "\d{1,}%")
-wifi_name=$(nmcli dev | awk '{print $4}' | sed '3,4d' | sed '1d')
 case $wifi_name in 
-    "BlackMamba") if test $battery == "100%"; then pa=916; else pa=884; fi ;;
+    "BlackMamba") if test $battery == "100%"; then pa=914; else pa=884; fi ;;
+    "Matrix") if test $battery == "100%"; then pa=916; else pa=924; fi ;; 
+    "AP08-CCT-ANEXO" ) if test $battery == "100%"; then pa=916; else pa=856; fi ;;  
     *) if test $battery == "100%"; then pa=894; else pa=894; fi ;;
-esac
+esac  
     
 while true                                                                                                                       
 do
@@ -173,4 +178,4 @@ do
 ^i($ICON_PATH/rightarrow2.xbm)^fg() ^pa(615)$(Tag) ^pa($pa)^fg($GRAY2)^i($ICON_PATH/leftarrow2.xbm)^i($ICON_PATH/leftarrow.xbm)^fg()\
 ^bg($GRAY2)^fg($BLACK)$(Temp) $(Battery)$(Brightness) $(Wifi) $(Date) $(Time)^fg() "
     sleep 1
-done | dzen2 -ta l -fn $FONT -bg $BLACK -fg $GRAY -x $X -y $Y -w $WIDTH -h $HEIGHT
+done | dzen2 -ta l -fn $FONT -bg $BLACK -fg $GRAY -x $X -y $Y -w $WIDTH -h $HEIGHT  #change bar size depending on wifi name and battery status
