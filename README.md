@@ -1,4 +1,4 @@
-# ArchLinux
+# Linux
 
-ArchLinux's files
+Linux's files
 
