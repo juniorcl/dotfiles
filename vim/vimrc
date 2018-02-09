@@ -6,7 +6,9 @@
 
 "" Tema para o vim.
 """""""""""""""""""
-colorscheme chroma
+" colorscheme choma
+" colorscheme duoduo
+colorscheme rupza
 
 "" Habilitando a sintaxe do texto.
 """"""""""""""""""""""""""""""""""
@@ -42,7 +44,7 @@ set ai
 
 "" Tabs são de tamanho de 4 espaços. 'ts'
 """""""""""""""""""""""""""""""""""""""""
-set tabstop=8
+set tabstop=4
 
 "" Tabs são convertidas em espaços. 'et'
 """"""""""""""""""""""""""""""""""""""""
@@ -66,7 +68,7 @@ set title
 
 "" Usa cores que ficam melhor com fundo preto, quando usando cores em edição de codigo fonte.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set background=dark
+set background=light
 
 "" Mostra o fechamento de {[(. 'sm'
 """""""""""""""""""""""""""""""""""
@@ -119,12 +121,7 @@ set undolevels=500
 "set directory=~/.vim/.swp
 
 "" Sem arquivos de swap
-"set noswapfile
+set noswapfile
 
 "" Sem arquivos de backup
 "set nobackup 
-
-
-
-
-
