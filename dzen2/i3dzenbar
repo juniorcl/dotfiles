@@ -32,14 +32,14 @@ W=800
 ## Dzen2 Info
 #############
 #############
-function Kernel()
+Kernel()
 {
     kernel=$(uname -r | grep -Eo '([0-9]*)\.([0-9]*)\.([0-9]*)\-([0-9]*)')
     echo -n "^fg($RED)^i($ICON_PATH/arch.xbm)^fg() $kernel"
     return
 }
 
-function Cpu()
+Cpu()
 {
     cpu=$(cpupower frequency-info -fm | awk '{print $4$5}' | sed '1d')
     #cpu_percent=$(cpupower frequency-info -f | awk '{print $4/1700000*100}' | grep -Eo '[0-9]+\.[0-9].')
@@ -47,7 +47,7 @@ function Cpu()
     return
 }
 
-function Root()
+Root()
 {
     root_free=$(df -h / | sed '1d' | awk '{print $4}')
     #root_free_percent=$(df -h /home | sed '1d' | awk '{print $5}')
@@ -55,7 +55,7 @@ function Root()
     return
 }
 
-function Home()
+Home()
 {
     home_free=$(df -h /home | sed '1d' | awk '{print $4}')
     #home_free_percent=$(df -h /home | sed '1d' | awk '{print $5}')
@@ -63,7 +63,7 @@ function Home()
     return
 }
 
-function Ram()
+Ram()
 {
     ram=$(free -mh | awk '{print $3}' | sed '1d' | sed '2d')
     ram_percent=$(free | grep Mem | awk '{print $3/$2 * 100}' | grep -Eo '([0-9]*)\.([0-9].)')
@@ -71,7 +71,7 @@ function Ram()
     return
 }
 
-function Swap()
+Swap()
 {
     swap=$(free -mh | awk '{print $3}' | sed '1d' | sed '1d')
     #swap_percent=$(free | grep Swap | awk '{print $3/$2 * 100}' | grep -Eo '([0-9]*)')
@@ -79,14 +79,14 @@ function Swap()
     return
 }
 
-function Temp()
+Temp()
 {
     temp=$(sensors | grep Package | awk '{print $4}'| grep -Eo '([0-9]+)\.([0-9]+)')
     echo -n "^fg($RED)^i($ICON_PATH/temp.xbm)^fg() $temp°C" 
     return
 }     
 
-function Battery
+Battery()
 {
     battery=$(acpi -b | grep -Po "\d{1,}%")
     charging=$(acpi -b | grep -Eo "(arging|Full)")
@@ -101,14 +101,14 @@ function Battery
     return
 }
 
-function Brightness()
+Brightness()
 {
     brightness=$(xbacklight -get | grep -Eo '([0-9]*)\.([0-9].)')
     echo -n "^fg($RED)^i($ICON_PATH/brightness.xbm)^fg() $brightness%"
     return
 }     
 
-function Wifi()
+Wifi()
 {
     wifi_name=$(nmcli dev | awk '{print $4}' | sed '3,4d' | sed '1d')
     if test -n $wifi_name
@@ -120,14 +120,14 @@ function Wifi()
     return
 }
 
-function Date()
+Date()
 {
     date="$(date +"%d").$(date +"%b")"
     echo -n "^fg($RED)^i($ICON_PATH/calendar.xbm)^fg() $date"
     return
 }
 
-function Time()
+Time()
 {
     hour=$(date +"%H:%M")
     echo -n "^fg($RED)^i($ICON_PATH/clock.xbm)^fg() $hour"
@@ -137,7 +137,7 @@ function Time()
 ## Print Dzen2
 ##############
 ##############
-while true                                                                                                                       
+while true
 do
     echo "$(Kernel) $(Cpu) $(Root) $(Home) $(Ram) $(Swap) $(Temp) $(Battery) $(Brightness) $(Wifi) $(Date) $(Time)"
     sleep 0.1
