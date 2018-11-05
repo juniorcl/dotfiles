@@ -34,7 +34,7 @@ W=800
 #############
 Kernel()
 {
-    kernel=$(uname -r | grep -Eo '([0-9]*)\.([0-9]*)\.([0-9]*)\-([0-9]*)')
+    kernel=$(uname -r | sed 's/\-.*//g')
     echo -n "^fg($RED)^i($ICON_PATH/arch.xbm)^fg() $kernel"
     return
 }
@@ -81,7 +81,7 @@ Swap()
 
 Temp()
 {
-    temp=$(sensors | grep Package | awk '{print $4}'| grep -Eo '([0-9]+)\.([0-9]+)')
+    temp=$(sensors | grep Package | awk '{print $4}'| egrep -o '([0-9]+)\.([0-9]+)')
     echo -n "^fg($RED)^i($ICON_PATH/temp.xbm)^fg() $temp°C" 
     return
 }     
