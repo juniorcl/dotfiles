@@ -4,6 +4,51 @@
 "                                                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"" Vundle Plugin Manager
+"""""""""""""""""""""""""
+set rtp+=~/.config/nvim/bundle/Vundle.vim
+call vundle#begin('~/.config/nvim/bundle')
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'severin-lemaignan/vim-minimap'
+Plugin 'vim-latex/vim-latex'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'xuhdev/vim-latex-live-preview'
+call vundle#end()
+filetype plugin indent on
+
+
+"" Vim-Plug Plugin Manager
+""""""""""""""""""""""""""
+call plug#begin('~/.config/nvim/plugged')
+Plug 'roxma/nvim-completion-manager'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+call plug#end()
+
+
+"" MiniMap Configuration
+""""""""""""""""""""""""
+let g:minimap_show='ms'
+let g:minimap_update='mu'
+let g:minimap_close='gc'
+let g:minimap_toggle='gt'
+let g:minimap_highlight='Comment'
+
+
+"" Airline COnfiguration
+""""""""""""""""""""""""
+let g:airline_theme = 'distinguished'
+let g:airline_powerline_fonts = 1
+
+
+"" new commands
+"""""""""""""""
+map <Enter>     o<ESC>
+map <S-Enter>   O<ESC>  
+
+
 "" nvim theme
 """""""""""""
 colorscheme chroma
@@ -102,4 +147,4 @@ set noswapfile
 
 "" highlights the current line
 """"""""""""""""""""""""""""""
-"set cul
+set cul
