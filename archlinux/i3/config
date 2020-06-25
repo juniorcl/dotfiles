@@ -1,0 +1,364 @@
+
+#░██ █░░░ █
+#░██░    ░█
+#░██   ███
+#░██  ░░░ █
+#░██ █   ░█
+#░██░ ████
+#░░  ░░░
+#
+#   ██████                      ████ ██
+#  ██░░░░██                    ░██░ ░░   █████
+# ██    ░░   ██████  ███████  ██████ ██ ██░░░██
+#░██        ██░░░░██░░██░░░██░░░██░ ░██░██  ░██
+#░██       ░██   ░██ ░██  ░██  ░██  ░██░░██████
+#░░██    ██░██   ░██ ░██  ░██  ░██  ░██ ░░░░░██
+# ░░██████ ░░██████  ███  ░██  ░██  ░██  █████
+#  ░░░░░░   ░░░░░░  ░░░   ░░   ░░   ░░  ░░░░░
+
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+## Páginas de ajuda para configuração do i3wm 
+#############################################
+#############################################
+#       http://i3wm.org/i3status/manpage.html
+#       https://i3wm.org/docs/userguide.html
+
+set $mod Mod4
+
+## Font for window titles. Will also be used by the bar unless a different font
+## is used in the bar {} block below.
+###############################################################################
+###############################################################################
+font pango:monospace 8
+
+## Use Mouse+$mod to drag floating windows to their wanted position
+###################################################################
+###################################################################
+floating_modifier $mod
+
+## Start a terminal
+###################
+###################
+bindsym $mod+Return exec termite 
+
+## Kill focused window
+######################
+######################
+bindsym $mod+Shift+q kill
+## Ativa o comando xkill
+bindsym $mod+Shift+x exec xkill &
+
+## Rofi
+#######
+#######
+bindsym $mod+d exec rofi -show run -separator-style dash -config ~/.config/rofi/rofi.conf 
+
+## Change focus
+###############
+###############
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+ccedilla focus right
+
+## Alternatively, you can use the cursor keys:
+##############################################
+##############################################
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+## Move focused window
+######################
+######################
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+ccedilla move right
+
+## Alternatively, you can use the cursor keys:
+##############################################
+##############################################
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+## Split in horizontal orientation
+##################################
+##################################
+bindsym $mod+h split h 
+
+## Split in vertical orientation
+################################
+################################
+bindsym $mod+v split v
+
+## Enter fullscreen mode for the focused container
+##################################################
+##################################################
+bindsym $mod+f fullscreen toggle
+
+## Change container layout (stacked, tabbed, toggle split)
+##########################################################
+##########################################################
+bindsym $mod+s layout stacking   
+bindsym $mod+w layout tabbed     
+bindsym $mod+e layout toggle split  
+
+## Toggle tiling / floating
+###########################
+###########################
+bindsym $mod+Shift+space floating toggle 
+
+## Change focus between tiling / floating windows
+#################################################
+#################################################
+bindsym $mod+space focus mode_toggle
+
+## Focus the parent container
+#############################
+#############################
+bindsym $mod+a focus parent
+
+## Focus the child container
+############################
+############################
+#bindsym $mod+d focus child
+
+## Assing variables workspace
+#############################
+#############################
+set $WS1  
+set $WS2 
+set $WS3 
+set $WS4 
+set $WS5 
+set $WS6 
+set $WS7 
+set $WS8  
+set $WS9 
+set $WS10 Aux.
+
+## Coloca as janelas em um específico monitor
+#############################################
+#############################################
+workspace $WS10 output HDMI1
+workspace $WS10 output HDMI2 
+workspace $WS10 output DP1
+
+## Switch to workspace
+######################
+######################                                      
+bindsym $mod+1 workspace $WS1
+bindsym $mod+2 workspace $WS2
+bindsym $mod+3 workspace $WS3
+bindsym $mod+4 workspace $WS4
+bindsym $mod+5 workspace $WS5
+bindsym $mod+6 workspace $WS6
+bindsym $mod+7 workspace $WS7
+bindsym $mod+8 workspace $WS8
+bindsym $mod+9 workspace $WS9
+bindsym $mod+0 workspace $WS10
+
+## Move focused container to workspace
+######################################
+######################################
+bindsym $mod+Shift+1 move container to workspace $WS1
+bindsym $mod+Shift+2 move container to workspace $WS2
+bindsym $mod+Shift+3 move container to workspace $WS3
+bindsym $mod+Shift+4 move container to workspace $WS4
+bindsym $mod+Shift+5 move container to workspace $WS5
+bindsym $mod+Shift+6 move container to workspace $WS6
+bindsym $mod+Shift+7 move container to workspace $WS7
+bindsym $mod+Shift+8 move container to workspace $WS8
+bindsym $mod+Shift+9 move container to workspace $WS9
+bindsym $mod+Shift+0 move container to workspace $WS10
+
+## Colocar programas em específicas containers
+##############################################
+##############################################
+#assign [class="^Termite$"]      $WS1
+assign [class="^Telegram"]      $WS2
+assign [class="^Firefox$"]      $WS3
+assign [class="^Pcmanfm$"]      $WS4
+assign [class="^Vlc"]           $WS6
+assign [class="^libreoffice"]    $WS7
+assign [class="^qBittorrent"]   $WS8
+
+## Reload the configuration file
+################################
+################################
+bindsym $mod+Shift+c reload
+
+## Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+################################################################################
+################################################################################
+bindsym $mod+Shift+r restart
+
+## Exit i3 (logs you out of your X session)
+###########################################
+###########################################
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+## Resize window (you can also use the mouse for that) 
+######################################################
+######################################################
+bindsym $mod+Ctrl+Left resize shrink width 10 px or 10 ppt
+bindsym $mod+Ctrl+Down resize grow height 10 px or 10 ppt
+bindsym $mod+Ctrl+Up resize shrink height 10 px or 10 ppt
+bindsym $mod+Ctrl+Right resize grow width 10 px or 10 ppt
+
+## Border style for new windows new_window normal|none|pixel
+############################################################
+############################################################
+# tamanho das bordas das janelas
+new_window pixel 1
+# tamanho das bordas das janelas em float
+new_float pixel 1
+
+## Hiding borders adjacent to the screen edges
+##############################################
+##############################################
+# Isso é útil se você estiver usando barras de rolagem ou não deseja 
+# desperdiçar até dois pixels no espaço de exibição. A configuração "inteligente" 
+# oculta bordas em espaços de trabalho com apenas uma janela visível, 
+# mas mantém-los em espaços de trabalho com várias janelas visíveis.
+# hide_edge_borders none|vertical|horizontal|both|smart
+hide_edge_borders smart
+
+## Alterar as cores das janelas     
+###############################
+###############################
+## Janela focada divdindo a tela
+# class                 border  backgr. text    indicator child_border
+client.focused          #000000 #840808 #BEBEBE #484E50   #840808
+
+## Janelas ativas em segundo plano
+# class                 border  backgr. text    indicator child_border
+client.focused_inactive #000000 #3c3c3c #BEBEBE #484E50   #3c3c3c
+
+## Janelas não focadas dividindo a tela, quando lado-lado (3⁰ plano)
+# class                 border  backgr. text    indicator child_borde
+client.unfocused        #3C3C3C #3c3c3c #BEBEBE #292D2E   #3c3c3c
+
+## Um cliente que tem sua dica de urgência ativada.
+# class                 border  backgr. text    indicator child_borde
+client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
+
+## O plano de fundo e a cor do texto são usados para desenhar o conteúdo da 
+## janela do marcador de posição (ao restaurar layouts). Borda e indicador são ignorados.
+# class                 border  backgr. text    indicator child_borde
+client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+
+## Cor do plano de fundo que será usada para pintar o plano de fundo da janela do cliente em cima da qual o cliente será processado. 
+## Apenas os clientes que não cobrem toda a área desta janela expõem a cor. 
+client.background       #ffffff
+
+## Start i3bar to display a workspace bar (plus the system information i3status
+## Finds out, if available)
+###############################################################################
+###############################################################################
+bar {
+    #status_command ~/.config/i3/conky-i3bar
+    status_command ~/.dzen2/i3dzenbar
+    position top
+    tray_output primary
+    font pango:Cantarrell 9
+    #separator_symbol .:
+   
+    colors {
+             background #000000
+             statusline #BEBEBE
+             separator  #FF0000
+    
+             #ColorClass        border  backgr. text
+             focused_workspace  #8A0808 #8A0808 #BEBEBE
+             inactive_workspace #000000 #000000 #BEBEBE
+             urgent_workspace   #8A0808 #000000 #8A0808
+    }
+}
+
+## run dzen2 bar
+#exec_always sh .dzen2/i3dzenbar
+
+## Menu para hibernar, desligar, logout, reboot e etc.
+######################################################
+######################################################
+set $Locker i3lock && sleep 1
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Pause mode "$mode_system"
+
+## Manual management of external displays
+#########################################
+#########################################
+# Set the shortcuts and what they do
+set $mode_display  Ext Screen (v) DP1 ON, (h) HDMI ON, (x) DP1 OFF, (y) HDMI OFF
+mode "$mode_display" {
+    bindsym v exec --no-startup-id xrandr --output DP1 --auto --left-of eDP1, mode "default"
+    bindsym h exec --no-startup-id xrandr --output HDMI2 --auto --right-of eDP1, mode "default"
+    bindsym x exec --no-startup-id xrandr --output DP1 --auto --off, mode "default"
+    bindsym y exec --notartup-id xrandr --output HDMI2 --auto --off, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+# Declare here the shortcut to bring the display selection menu
+bindsym $mod+x mode "$mode_display"
+
+## Screenshot: Print Screen ou Screenshooter
+############################################
+############################################
+bindsym Print exec scrot '%d.%m.%Y_%H.%M_screenshot.png' -e 'mv $f ~/Pictures/'
+
+## Iniciar com o papael de parede
+#################################
+#################################
+exec_always feh --bg-scale ~/Pictures/Wallpapers/wallhaven-310335.jpg
+
+## Screen brightness controls
+#############################
+#############################
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+
+## Constraining floating window size
+####################################
+####################################
+floating_minimum_size 75 x 50
+floating_maximum_size -1 x -1
+
+## Atalhos para programas 
+#########################
+#########################
+bindsym $mod+Ctrl+f exec firefox &
+bindsym $mod+Ctrl+a exec termite -e alsamixer
+bindsym $mod+Ctrl+c exec chromium &
+bindsym $mod+Ctrl+p exec pcmanfm &
+bindsym $mod+Ctrl+u exec pavucontrol
+bindsym $mod+Ctrl+v exec vlc &
+bindsym $mod+Ctrl+t exec ~/.Telegram/Telegram
+bindsym $mod+Ctrl+l exec /usr/bin/libreoffice
+bindsym $mod+Ctrl+i exec virtualbox
+
+## Icones que iniciam na barra do i3wm e papal de parede
+########################################################
+########################################################
+exec --no-startup-id setxkbmap -model abnt2 -layout br -variant abnt2

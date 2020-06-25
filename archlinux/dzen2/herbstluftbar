@@ -1,0 +1,181 @@
+#!/usr/bin/bash
+#It has been configured to be used in herbstluftwm
+killall dzen2 
+#############################################################################################################################
+############################################################################################################################# 
+###                                                                                                                       ###
+###                                                     Dzen2 Bar                                                         ### 
+###                                                                                                                       ###
+#############################################################################################################################
+############################################################################################################################# 
+
+
+## Customization of dzen2
+#########################
+#########################
+BLACK='#000000'
+BLACK2='#151515'
+RED='#770000'
+GRAY='#BEBEBE'
+GRAY2='#2b2b2b'  
+WHITE='#FFFFFF'
+PINK='#FF00FF'
+BLUE='#0066CC'
+YELLOW='#d6d600'
+
+ICON_PATH="$HOME/.config/dzen2/icon"
+FONT="-*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-*"
+ 
+
+## Dzen2 Info
+#############
+#############
+Tag()
+{
+    TAGS=( $(herbstclient tag_status $monitor) )
+    for i in "${TAGS[@]}"
+    do
+        case ${i:0:1} in
+            '#') echo -n "^bg($BLACK)^fg($YELLOW)" ;;
+            '+') echo -n "^bg(#9CA668)^fg(#141414)" ;;
+            ':') echo -n "^bg($BLACK)^fg($WHITE)" ;;
+            '!') echo -n "^bg(#FF0675)^fg(#141414)" ;;
+             *)  echo -n "^bg()^fg()" ;;
+        esac
+  
+        echo -n "^ca(1,\"${herbstclient_command[@]:-herbstclient}\" "
+        echo -n "focus_monitor \"$monitor\" && "
+        echo -n "\"${herbstclient_command[@]:-herbstclient}\" "              
+        echo -n "use \"${i:1}\") ${i:1} ^ca()"
+    done
+}
+    
+Kernel()
+{
+    kernel=$(uname -r | grep -Eo '([0-9]*)\.([0-9]*)\.([0-9]*)\-([0-9]*)')
+    echo -n "^i($ICON_PATH/arch.xbm) $kernel"
+}
+
+Cpu()
+{
+    cpu=$(cpupower frequency-info -fm | awk '{print $4$5}' | sed '1d')
+    #cpu_percent=$(cpupower frequency-info -f | awk '{print $4/1700000*100}' | grep -Eo '[0-9]+\.[0-9].')
+    echo -n "^i($ICON_PATH/cpu.xbm) $cpu"                                             
+}
+
+Root()
+{
+    root_free=$(df -h / | sed '1d' | awk '{print $4}')
+    #root_free_percent=$(df -h /home | sed '1d' | awk '{print $5}')
+    echo -n "^i($ICON_PATH/root.xbm) $root_free" 
+}
+
+Home()
+{
+    home_free=$(df -h /home | sed '1d' | awk '{print $4}')
+    #home_free_percent=$(df -h /home | sed '1d' | awk '{print $5}')
+    echo -n "^i($ICON_PATH/hd.xbm) $home_free" 
+}
+
+Ram()
+{
+    ram=$(free -mh | awk '{print $3}' | sed '1d' | sed '2d')
+    ram_percent=$(free | grep Mem | awk '{print $3/$2 * 100}' | grep -Eo '([0-9]*)\.([0-9].)')
+    echo -n "^i($ICON_PATH/ram.xbm) $ram $ram_percent%"
+}
+
+Swap()
+{
+    swap=$(free -mh | awk '{print $3}' | sed '1d' | sed '1d')
+    #swap_percent=$(free | grep Swap | awk '{print $3/$2 * 100}' | grep -Eo '([0-9]*)')
+    echo -n "^i($ICON_PATH/swap.xbm) $swap" #$swap_percent% "
+}
+
+Temp()
+{
+    temp=$(sensors | grep Package | awk '{print $4}'| grep -Eo '([0-9]+)\.([0-9]+)')
+    echo -n "^i($ICON_PATH/temp.xbm) $temp°C" 
+}     
+
+Battery()
+{
+    battery=$(acpi -b | grep -Po "\d{1,}%")
+    batterystatus=$(acpi -b | grep -Eo "(Charging|Full)") 
+    timeofcharging=$(acpi -b | awk '{print $5}' | grep -Eo '([0-9]+:([0-9]+))')
+
+    case $batterystatus in 
+        "Full") echo -n "^i($ICON_PATH/battery.xbm) $battery" ;;
+        "Charging") echo -n "^i($ICON_PATH/charging.xbm) $battery $timeofcharging" ;;
+        *) echo -n "^i($ICON_PATH/discharging.xbm) $battery $timeofcharging" ;; 
+    esac
+}
+
+Brightness()
+{
+    brightness=$(xbacklight -get | grep -Eo '([0-9]*)\.([0-9].)')
+    echo -n "^i($ICON_PATH/brightness.xbm) $brightness%"
+}     
+
+Wifi()
+{
+    #wifi_percent=$(nmcli dev wifi | grep $(nmcli dev | awk '{print $4}' | sed '3,4d' | sed '1d') | awk '{print $7}')
+    wifi_name=$(nmcli dev | awk '{print $4}' | sed '3,4d' | sed '1d') 
+    case $wifi_name in
+        "BlackMamba") echo -n "^i($ICON_PATH/wifi.xbm) $wifi_name" ;;
+        "Matrix") echo -n "^i($ICON_PATH/wifi.xbm) $wifi_name" ;; 
+        "AP08-CCT-ANEXO" ) echo -n "^i($ICON_PATH/wifi.xbm) $wifi_name" ;;  
+        *) echo -n "^i($ICON_PATH/wifi.xbm) Not Connected" ;;
+    esac
+}
+
+Date()
+{
+    date=$(date +%d).$(date +%b)
+    echo -n "^i($ICON_PATH/calendar.xbm) $date"
+}
+
+Time()
+{
+    hour=$(date +%H:%M)
+    echo -n "^i($ICON_PATH/clock.xbm) $hour"
+}
+
+
+## Position of dzen2
+####################
+####################
+monitor=${1:-0}
+geometry=( $(herbstclient monitor_rect "$monitor") ) 
+WIDTH=${geometry[2]} 
+HEIGHT=16
+
+## Bar on top
+#X=${geometry[0]} 
+#Y=${geometry[1]}
+#herbstclient pad $monitor $HEIGHT
+
+## Bar on bottom
+X=${geometry[1]} 
+Y=${geometry[3]}
+herbstclient pad $monitor 0 0 $HEIGHT 0
+
+
+## Print Dzen2
+##############
+##############
+wifi_name=$(nmcli dev | awk '{print $4}' | sed '3,4d' | sed '1d') 
+battery=$(acpi -b | grep -Po "\d{1,}%")
+case $wifi_name in 
+    "BlackMamba") if test $battery == "100%"; then pa=914; else pa=884; fi ;;
+    "Matrix") if test $battery == "100%"; then pa=916; else pa=924; fi ;; 
+    "AP08-CCT-ANEXO" ) if test $battery == "100%"; then pa=916; else pa=856; fi ;;  
+    *) if test $battery == "100%"; then pa=894; else pa=894; fi ;;
+esac  
+    
+while true                                                                                                                       
+do
+    echo "^pa(0)^fg($BLACK)^bg($GRAY2) $(Kernel) $(Cpu) $(Root) $(Home) $(Ram) $(Swap)^fg()^bg()^fg($GRAY2)^i($ICON_PATH/rightarrow.xbm)\
+^i($ICON_PATH/rightarrow2.xbm)^fg() ^pa(615)$(Tag) ^pa($pa)^fg($GRAY2)^i($ICON_PATH/leftarrow2.xbm)^i($ICON_PATH/leftarrow.xbm)^fg()\
+^bg($GRAY2)^fg($BLACK)$(Temp) $(Battery)$(Brightness) $(Wifi) $(Date) $(Time)^fg() "
+    sleep 1
+done | dzen2 -ta l -fn $FONT -bg $BLACK -fg $GRAY -x $X -y $Y -w $WIDTH -h $HEIGHT  #change bar size depending on wifi name and battery status
