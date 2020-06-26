@@ -15,7 +15,7 @@ echo
 ## Changing Bash to ZSH
 #######################
 echo "Changing Bash to ZSH.."
-cp $GITHUB/dotfiles/manjaro/zsh/.zshrc ~/.zshrc
+cp $GITHUBDIR/dotfiles/manjaro/zsh/.zshrc ~/.zshrc
 chsh -l /usr/bin/zsh
 echo
 

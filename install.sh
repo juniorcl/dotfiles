@@ -1,8 +1,7 @@
 #!/bin/bash
 clear
 
-GITHUBDIR="$HOME/Github"
-export $GITHUBDIR
+export GITHUBDIR="$HOME/Github"
 
 Menu ()
 {
