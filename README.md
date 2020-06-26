@@ -1,5 +1,5 @@
 # DotFiles
-A simple shell script used to configure my desktop.
+A simple shell script used to configure my desktop. Coded with :heartpulse: by me.
 
 ## About
 This is a shell script created for configuration my desktop. This can be used for different operatihg systems (OSs) based on GNU/Linux I commonlly use. The list below shows them.
@@ -20,5 +20,4 @@ A menu will show up where you can select the operating system for setting up.
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ---
-Especial Thanks to my friend [mswell](www.github.com/mswell) who inspired me to make the project.
-And especially, coded with :heartpulse:!
+Especial Thanks to my friend [mswell](www.github.com/mswell) who inspired me to make this project.
