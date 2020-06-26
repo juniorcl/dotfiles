@@ -70,3 +70,9 @@ else
     echo "Midori ins't installed!"
 fi
 echo
+
+## Installing qBitorrent
+########################
+echo "Installing qBittorrent.."
+sudo pacman -S --noconfirm qbittorrent
+echo
