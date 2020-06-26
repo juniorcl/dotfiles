@@ -5,7 +5,6 @@ A simple shell script used to configure my desktop. Coded with :heartpulse: by m
 This is a shell script created for configuration my desktop. This can be used for different operatihg systems (OSs) based on GNU/Linux I commonlly use. The list below shows them.
 
 #### Supported OSs
-- Ubuntu
 - ArchLinux
 - Manjaro
 
