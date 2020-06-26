@@ -82,3 +82,10 @@ echo
 echo "Installing Materia Theme.."
 yay -S --noconfirm materia-gtk-theme
 echo
+
+## Install R
+############
+echo "Installing R language.."
+pacman -S --noconfirm R
+yay -S --noconfirm r-studio-desktop-bin
+echo
