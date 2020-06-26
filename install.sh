@@ -30,7 +30,7 @@ Menu ()
 Ubuntu ()
 {
     echo
-    echo "Nice! Initializing the Ubuntu setup.."
+    echo "Nice! Initializing Ubuntu setup.."
     sleep 1
     source Ubuntu/setup.sh
 }
@@ -38,7 +38,7 @@ Ubuntu ()
 ArchLinux ()
 {
     echo
-    echo "Nice! Initializing the ArchLinux setup.."
+    echo "Nice! Initializing ArchLinux setup.."
     sleep 1
     source ArchLinux/setup.sh
 }
@@ -46,7 +46,7 @@ ArchLinux ()
 Manajro ()
 {
     echo
-    echo "Nice! Initializing the Manjaro setup.."
+    echo "Nice! Initializing Manjaro setup.."
     sleep 1
     source Manjaro/setup.sh
 }
