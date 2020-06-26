@@ -94,4 +94,29 @@ echo
 ##############
 echo "Installing VLC.."
 sudo pacman -S vlc
+
+echo "Now It'll install the vlsub extension.."
 echo
+git clone https://github.com/exebetche/vlsub.git $HOME/Github/vlsub
+VLSUBLUA="$HOME/.local/share/vlc/lua"
+
+if [ -d "$VLSUBLUA" 2> /dev/null ]
+then
+	echo "The $VLSBLUA/extensions exits.."
+	echo "Coping extension to $VLSUBLUA/extensions.."
+	cp $GITHUBDIR/vlsub/vlsub.lua $VLSUBLUA/extensions
+	echo "The extensions was successfully copied!"
+
+else
+	echo "The $VLSBLUA doesn't exits.."
+	echo "Creating $VLSBLUA.."
+	mkdir $HOME/.local/share/vlc/lua
+
+	echo "Creating $VLSBLUA/extensions.."
+	mkdir $HOME/.local/share/vlc/lua/extensions
+
+	echo "Copying vlsub.lua to $VLSBLUA/extension"
+	cp $GITHUBDIR/vlsub/vlsub.lua $VLSUBLUA/extensions
+	echo "The extensions was successfully copied!"
+
+fi
