@@ -76,3 +76,9 @@ echo
 echo "Installing qBittorrent.."
 sudo pacman -S --noconfirm qbittorrent
 echo
+
+## Install Materia Theme
+########################
+echo "Installing Materia Theme.."
+yay -S --noconfirm materia-gtk-theme
+echo
