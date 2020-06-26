@@ -86,6 +86,12 @@ echo
 ## Install R
 ############
 echo "Installing R language.."
-pacman -S --noconfirm r
+sudo pacman -S --noconfirm r
 yay -S --noconfirm r-studio-desktop-bin
+echo
+
+## Install VLC
+##############
+echo "Installing VLC.."
+sudo pacman -S vlc
 echo
