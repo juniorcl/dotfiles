@@ -86,6 +86,6 @@ echo
 ## Install R
 ############
 echo "Installing R language.."
-pacman -S --noconfirm R
+pacman -S --noconfirm r
 yay -S --noconfirm r-studio-desktop-bin
 echo
