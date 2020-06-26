@@ -15,3 +15,5 @@ Just download the folder and execute the [install.sh](install.sh). You can execu
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
+---
+Especial Thanks to my friend [mswell](www.github.com/mswell) from who the projet was inspired. And especially! Coded with :heartpulse.

@@ -22,27 +22,33 @@ Menu ()
         1) Ubuntu ;;
         2) ArchLinux ;;
         3) Majaro ;;
-        0) exit ;;
-        *) "Are you kidding?? This option isn't avaliable!"; echo Menu ;;
+        0) echo; echo "Ok! Let's go D:"; sleep 1; exit ;;
+        *) echo; echo "Are you kidding?? \nThis option isn't avaliable! \nTry again man!!"; sleep 1; echo; Menu ;;
     esac
 }
 
 Ubuntu ()
 {
-    echo "Nice! Initializing the setup."
-    source Ubuntu/start.sh
+    echo
+    echo "Nice! Initializing the Ubuntu setup.."
+    sleep 1
+    source Ubuntu/setup.sh
 }
 
 ArchLinux ()
 {
-    echo "Nice! Initializing the setup."
-    source ArchLinux/start.sh
+    echo
+    echo "Nice! Initializing the ArchLinux setup.."
+    sleep 1
+    source ArchLinux/setup.sh
 }
 
 Manajro ()
 {
-    echo "Nice! Initializing the setup."
-    source Manjaro/start.sh
+    echo
+    echo "Nice! Initializing the Manjaro setup.."
+    sleep 1
+    source Manjaro/setup.sh
 }
 
 Menu
