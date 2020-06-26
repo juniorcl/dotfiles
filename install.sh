@@ -1,7 +1,8 @@
 #!/usr/bin/bash
 clear
 
-Menu () {
+Menu ()
+{
     echo "#####################################################"
     echo "#####################################################"
     echo "##                                                 ##"
@@ -26,17 +27,20 @@ Menu () {
     esac
 }
 
-Ubuntu () {
+Ubuntu ()
+{
     echo "Nice! Initializing the setup."
     source Ubuntu/start.sh
 }
 
-ArchLinux () {
+ArchLinux ()
+{
     echo "Nice! Initializing the setup."
     source ArchLinux/start.sh
 }
 
-Manajro () {
+Manajro ()
+{
     echo "Nice! Initializing the setup."
     source Manjaro/start.sh
 }
