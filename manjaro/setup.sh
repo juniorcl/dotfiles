@@ -1,6 +1,7 @@
 #!/bin/bash
 clear
 
+
 echo "################################################"
 echo "################################################"
 echo "##                                            ##"
@@ -14,7 +15,7 @@ echo
 ## Changing Bash to ZSH
 #######################
 echo "Changing Bash to ZSH.."
-cp manjaro/zsh/.zshrc ~/.zshrc
+cp $GITHUB/dotfiles/manjaro/zsh/.zshrc ~/.zshrc
 chsh -l /usr/bin/zsh
 echo
 
@@ -63,11 +64,9 @@ then
     echo "Uninstalling midori Browser.."
     echo
     sudo pacman -Rs --noconfirm midori
-    echo "Midori Uninstalled"
+    echo "Midori Uninstalled!"
 
 else
-    echo "Midori ins't installed.."
-
+    echo "Midori ins't installed!"
 fi
 echo
-

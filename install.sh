@@ -1,5 +1,8 @@
-#!/usr/bin/bash
+#!/bin/bash
 clear
+
+GITHUBDIR="$HOME/Github"
+export $GITHUBDIR
 
 Menu ()
 {
@@ -11,9 +14,9 @@ Menu ()
     echo "#####################################################"
     echo "#####################################################"
     echo
-    echo "[1] -> Ubuntu"
-    echo "[2] -> Arch Linux"
-    echo "[3] -> Manjaro"
+    echo "[1] --> Ubuntu"
+    echo "[2] --> Arch Linux"
+    echo "[3] --> Manjaro"
     echo
     echo -n "Let's go! Choose your distro: "
     read option
@@ -32,7 +35,7 @@ Ubuntu ()
     echo
     echo "Nice! Initializing Ubuntu setup.."
     sleep 1
-    source Ubuntu/setup.sh
+    source $GITHUBDIR/ubuntu/setup.sh
 }
 
 ArchLinux ()
@@ -40,7 +43,7 @@ ArchLinux ()
     echo
     echo "Nice! Initializing ArchLinux setup.."
     sleep 1
-    source ArchLinux/setup.sh
+    source $GITHUBDIR/archlinux/setup.sh
 }
 
 Manajro ()
@@ -48,7 +51,7 @@ Manajro ()
     echo
     echo "Nice! Initializing Manjaro setup.."
     sleep 1
-    source Manjaro/setup.sh
+    source $GITHUBDIR/manjaro/setup.sh
 }
 
 Menu
