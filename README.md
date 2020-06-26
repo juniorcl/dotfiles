@@ -20,4 +20,4 @@ A menu will show up where you can select the operating system for setting up.
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ---
-Especial Thanks to my friend [mswell](www.github.com/mswell) who inspired me to make this project.
+Especial Thanks to my friend [mswell](https://github.com/mswell) who inspired me to make this project.
