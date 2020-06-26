@@ -10,8 +10,7 @@ You only need to have a GNU/Linux operation system installed on your computer an
 Just download the folder and execute the [install.sh](install.sh). You can execute the command below to run the script.
 
 
-    chmod +x install.sh &&
-    ./install.sh
+> chmod +x install.sh && ./install.sh
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
