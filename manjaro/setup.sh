@@ -2,7 +2,11 @@
 clear
 
 echo "################################################"
-echo "##         Setup Manajaro Installer           ##"
+echo "################################################"
+echo "##                                            ##"
+echo "##          Manajaro Installer Setup          ##"
+echo "##                                            ##"
+echo "################################################"
 echo "################################################"
 echo
 echo
@@ -35,4 +39,9 @@ cd ~/
 ####################
 echo "Installing vscode.."
 yay -S visual-studio-code-bin
+
+## Installing Firefox in pt-br
+##############################
+echo "Installing Firefox in Brazilian Portuguese.."
+sudo pacman -S --noconfirm firefox firefox-i18n-ptbr
 
