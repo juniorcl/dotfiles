@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 
-export GITHUBDIR="$HOME/Github/dotfiles"
+export DOTFILES="$HOME/Github/dotfiles"
 
 Menu ()
 {
@@ -34,7 +34,7 @@ Ubuntu ()
     echo
     echo "Nice! Initializing Ubuntu setup.."
     sleep 1
-    source $GITHUBDIR/ubuntu/setup.sh
+    source $DOTFILES/ubuntu/setup.sh
 }
 
 ArchLinux ()
@@ -42,7 +42,7 @@ ArchLinux ()
     echo
     echo "Nice! Initializing ArchLinux setup.."
     sleep 1
-    source $GITHUBDIR/archlinux/setup.sh
+    source $DOTFILES/archlinux/setup.sh
 }
 
 Manjaro ()
@@ -50,7 +50,7 @@ Manjaro ()
     echo
     echo "Nice! Initializing Manjaro setup.."
     sleep 1
-    source $GITHUBDIR/manjaro/setup.sh
+    source $DOTFILES/manjaro/setup.sh
 }
 
 Menu
