@@ -17,7 +17,7 @@ sleep 1
 #######################
 echo "Changing Bash to ZSH.."
 sleep 1
-cp $GITHUBDIR/manjaro/zsh/.zshrc ~/.zshrc
+cp $DOTFILES/manjaro/zsh/.zshrc ~/.zshrc
 chsh -l /usr/bin/zsh
 echo
 
@@ -124,7 +124,7 @@ then
 	echo "Coping extension to $VLSUBLUA/extensions.."
 	sleep 1
 
-	cp $GITHUBDIR/vlsub/vlsub.lua $VLSUBLUA/extensions
+	cp $HOME/Github/vlsub/vlsub.lua $VLSUBLUA/extensions
 	echo "The extensions was successfully copied!"
 	sleep 1
 
@@ -140,7 +140,7 @@ else
 
 	echo "Copying vlsub.lua to $VLSBLUA/extension"
 	sleep 1
-	cp $GITHUBDIR/vlsub/vlsub.lua $VLSUBLUA/extensions
+	cp $HOME/Github/vlsub/vlsub.lua $VLSUBLUA/extensions
 	echo "The extensions was successfully copied!"
 	sleep 1
 
