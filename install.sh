@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 
-export GITHUBDIR="$HOME/Github"
+export GITHUBDIR="$HOME/Github/dotfiles"
 
 Menu ()
 {
@@ -23,7 +23,7 @@ Menu ()
     case $option in
         1) Ubuntu ;;
         2) ArchLinux ;;
-        3) Majaro ;;
+        3) Manjaro ;;
         0) echo; echo "Ok! Let's go D:"; sleep 1; exit ;;
         *) echo; echo "Are you kidding?? \nThis option isn't avaliable! \nTry again man!!"; sleep 1; echo; Menu ;;
     esac
@@ -45,7 +45,7 @@ ArchLinux ()
     source $GITHUBDIR/archlinux/setup.sh
 }
 
-Manajro ()
+Manjaro ()
 {
     echo
     echo "Nice! Initializing Manjaro setup.."
