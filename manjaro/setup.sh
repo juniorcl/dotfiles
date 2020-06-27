@@ -45,7 +45,7 @@ echo
 ################
 echo "Instaling yay.."
 sleep 1
-git clone https://github.com/Jguer/yay.git ~/.yay
+git clone https://aur.archlinux.org/yay.git ~/.yay
 cd ~/.yay
 makepkg -si 
 cd ~/
