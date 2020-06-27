@@ -13,6 +13,14 @@ echo
 echo
 sleep 1
 
+## Preprocessing
+################
+echo "Starting preprocessing.."
+sleep 1
+sudo pacman -Syu
+sudo pacman -S base-devel
+echo
+
 ## Changing Bash to ZSH
 #######################
 echo "Changing Bash to ZSH.."
@@ -23,7 +31,7 @@ echo
 
 ## Pyenv Install
 ################
-echo "Installing Pyenv.."
+echo "Instaling Pyenv.."
 sleep 1
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 
@@ -35,43 +43,43 @@ echo
 
 ## Intalling yay
 ################
-echo "Installing yay.."
+echo "Instaling yay.."
 sleep 1
 git clone https://github.com/Jguer/yay.git ~/.yay
-cd .yay
-makepkg -si
+cd ~/.yay
+makepkg -si 
 cd ~/
 echo
 
-## Installing vscode
+## Instaling vscode
 ####################
-echo "Installing vscode.."
+echo "Instaling vscode.."
 sleep 1
 yay -S visual-studio-code-bin
 echo
 
-## Installing Firefox in pt-br
+## Instaling Firefox in pt-br
 ##############################
-echo "Installing Firefox in Brazilian Portuguese.."
+echo "Instaling Firefox in Brazilian Portuguese.."
 sleep 1
-sudo pacman -S --noconfirm firefox firefox-i18n-ptbr
+sudo pacman -S --noconfirm firefox firefox-i18n-pt-br
 echo
 
-## Installing hack font
+## Instaling hack font
 #######################
-echo "Installing Hack Font.."
+echo "Instaling Hack Font.."
 sleep 1
 sudo pacman -S --noconfirm ttf-hack
 echo
 
-## Uninstalling Midori Brownser
+## UnInstaling Midori Brownser
 ###############################
-echo "Uninstalling midori.."
+echo "UnInstaling midori.."
 sleep 1
 
 if [ -e "$(which midori 2> /dev/null)" ]
 then
-    echo "Uninstalling midori Browser.."
+    echo "UnInstaling midori Browser.."
     echo
     sudo pacman -Rs --noconfirm midori
     echo "Midori Uninstalled!"
@@ -83,65 +91,30 @@ else
 fi
 echo
 
-## Installing qBitorrent
+## Instaling qBitorrent
 ########################
-echo "Installing qBittorrent.."
+echo "Instaling qBittorrent.."
 sleep 1
 sudo pacman -S --noconfirm qbittorrent
 echo
 
 ## Install Materia Theme
 ########################
-echo "Installing Materia Theme.."
+echo "Instaling Materia Theme.."
 sleep 1
 yay -S --noconfirm materia-gtk-theme
 echo
 
 ## Install R
 ############
-echo "Installing R language.."
+echo "Instaling R language.."
 sleep 1
 sudo pacman -S --noconfirm r
-yay -S --noconfirm r-studio-desktop-bin
+yay -S --noconfirm rstudio-desktop-bin
 echo
 
 ## Install VLC
 ##############
-echo "Installing VLC.."
+echo "Instaling VLC.."
 sleep 1
 sudo pacman -S vlc
-
-echo "Now It'll install the vlsub extension.."
-echo
-sleep 1
-
-git clone https://github.com/exebetche/vlsub.git $HOME/Github/vlsub
-VLSUBLUA="$HOME/.local/share/vlc/lua"
-
-if [ -d "$VLSUBLUA" 2> /dev/null ]
-then
-	echo "The $VLSBLUA/extensions exits.."
-	echo "Coping extension to $VLSUBLUA/extensions.."
-	sleep 1
-
-	cp $HOME/Github/vlsub/vlsub.lua $VLSUBLUA/extensions
-	echo "The extensions was successfully copied!"
-	sleep 1
-
-else
-	echo "The $VLSBLUA doesn't exits.."
-	echo "Creating $VLSBLUA.."
-	sleep 1
-	mkdir $HOME/.local/share/vlc/lua
-
-	echo "Creating $VLSBLUA/extensions.."
-	sleep 1
-	mkdir $HOME/.local/share/vlc/lua/extensions
-
-	echo "Copying vlsub.lua to $VLSBLUA/extension"
-	sleep 1
-	cp $HOME/Github/vlsub/vlsub.lua $VLSUBLUA/extensions
-	echo "The extensions was successfully copied!"
-	sleep 1
-
-fi
