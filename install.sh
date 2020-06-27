@@ -5,17 +5,13 @@ export DOTFILES="$HOME/Github/dotfiles"
 
 Menu ()
 {
-    echo "#####################################################"
-    echo "#####################################################"
-    echo "##                                                 ##"
-    echo "##              DotFile Juniorcl                   ##"
-    echo "##                                                 ##"
-    echo "#####################################################"
-    echo "#####################################################"
+    echo -e "\e[1;35m#####################################################\e[0m"
+    echo -e "\e[1;35m##              \e[0mConfig My Fuck1\"g OS \e[91mS2            \e[35m##"
+    echo -e "#####################################################\e[0m"
     echo
-    echo "[1] --> Ubuntu"
-    echo "[2] --> Arch Linux"
-    echo "[3] --> Manjaro"
+    echo -e "\e[93m[1] -->\e[0m Ubuntu"
+    echo -e "\e[93m[2] -->\e[0m Arch Linux"
+    echo -e "\e[93m[3] -->\e[0m Manjaro"
     echo
     echo -n "Let's go! Choose your distro: "
     read option
@@ -25,14 +21,14 @@ Menu ()
         2) ArchLinux ;;
         3) Manjaro ;;
         0) echo; echo "Ok! Let's go D:"; sleep 1; exit ;;
-        *) echo; echo "Are you kidding?? \nThis option isn't avaliable! \nTry again man!!"; sleep 1; echo; Menu ;;
+        *) echo; echo "Not an avaliable option! Try again!!"; sleep 1; echo; Menu ;;
     esac
 }
 
 Ubuntu ()
 {
     echo
-    echo "Nice! Initializing Ubuntu setup.."
+    echo -e "\e[1;35m==>\e[0m \e[1mNice! Initializing Ubuntu setup..\e[0m"
     sleep 1
     source $DOTFILES/ubuntu/setup.sh
 }
@@ -40,7 +36,7 @@ Ubuntu ()
 ArchLinux ()
 {
     echo
-    echo "Nice! Initializing ArchLinux setup.."
+    echo -e "\e[1;35m==>\e[0m \e[1mNice! Initializing ArchLinux setup..\e[0m"
     sleep 1
     source $DOTFILES/archlinux/setup.sh
 }
@@ -48,7 +44,7 @@ ArchLinux ()
 Manjaro ()
 {
     echo
-    echo "Nice! Initializing Manjaro setup.."
+    echo -e "\e[1;35m==>\e[0m \e[1mNice! Initializing Manjaro setup..\e[0m"
     sleep 1
     source $DOTFILES/manjaro/setup.sh
 }
