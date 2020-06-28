@@ -93,6 +93,22 @@ else
 fi
 echo
 
+## Uninstaling Parole Media
+########################### 
+echo -e "\e[1;35m==>\e[0m \e[1mParole\e[0m"
+
+if [ -e "$(which parole 2> /dev/null)" ]
+then
+    echo -e " \e[93m->\e[0m \e[1mUninstaling Parole Media Player..\e[0m"
+    sudo pacman -Rs --noconfirm midori
+    echo -e " \e[93m->\e[0m \e[1mParole Uninstalled!\e[0m"
+	
+else
+    echo -e " \e[93m->\e[0m \e[1mParole is not installed!\e[0m"
+
+fi
+echo
+
 ## Instaling qBitorrent
 ########################
 echo -e "\e[1;35m==>\e[0m \e[1mqBitorrent\e[0m"
