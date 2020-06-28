@@ -10,10 +10,11 @@ This is a shell script created for configuration my desktop. This can be used fo
 - Ubuntu (coming soon)
 
 ## Usage
-Just download or clone the repository, create a folder named "Github" on your home and execute the [install.sh](install.sh). You can execute the command below to run the script.
+Create a folder called "Github" on your `$HOME`, clone the repository inside it and execute the [install.sh](install.sh). You can execute the commands below to run the script.
 
-    cd $HOME
     mkdir Github
+    git clone https://github.com/juniorcl/dotfiles.git Github/dotfiles 
+    cd Github/dotfiles
     chmod +x install.sh && ./install.sh
 
 A menu will show up where you can select the operating system for setting up.
