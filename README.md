@@ -10,9 +10,11 @@ This is a shell script created for configuration my desktop. This can be used fo
 - Ubuntu (coming soon)
 
 ## Usage
-Just download the folder and execute the [install.sh](install.sh). You can execute the command below to run the script.
+Just download or clone the repository, create a folder named "Github" on your home and execute the [install.sh](install.sh). You can execute the command below to run the script.
 
-> chmod +x install.sh && ./install.sh
+    cd $HOME
+    mkdir Github
+    chmod +x install.sh && ./install.sh
 
 A menu will show up where you can select the operating system for setting up.
 
