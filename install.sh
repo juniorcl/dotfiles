@@ -28,7 +28,7 @@ Menu ()
 Ubuntu ()
 {
     echo
-    echo -e "\e[1;35m==>\e[0m \e[1mNice! Initializing Ubuntu setup..\e[0m"
+    echo -e "\e[1mNice! Initializing Ubuntu setup.\e[0m"
     sleep 1
     source $DOTFILES/ubuntu/setup.sh
 }
@@ -36,7 +36,7 @@ Ubuntu ()
 ArchLinux ()
 {
     echo
-    echo -e "\e[1;35m==>\e[0m \e[1mNice! Initializing ArchLinux setup..\e[0m"
+    echo -e "\e[1mNice! Initializing ArchLinux setup.\e[0m"
     sleep 1
     source $DOTFILES/archlinux/setup.sh
 }
@@ -44,7 +44,7 @@ ArchLinux ()
 Manjaro ()
 {
     echo
-    echo -e "\e[1;35m==>\e[0m \e[1mNice! Initializing Manjaro setup..\e[0m"
+    echo -e "\e[1mNice! Initializing Manjaro setup.\e[0m"
     sleep 1
     source $DOTFILES/manjaro/setup.sh
 }
