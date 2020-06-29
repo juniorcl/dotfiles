@@ -123,7 +123,7 @@ echo
 ########################
 purpleDots "qBitorrent"
 yellowArrows "Instaling qBittorrent.."
-sudo pacman -S --noconfirm qBittorrent
+sudo pacman -S --noconfirm qbittorrent
 echo
 
 ## Install Materia Theme
