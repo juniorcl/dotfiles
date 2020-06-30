@@ -150,3 +150,9 @@ purpleDots "VLC Media Player"
 yellowArrows "Instaling vlc.."
 sudo pacman -S vlc
 echo
+
+## Install ferdi
+################
+purpleDots "Ferdi"
+yellowArrows "Instaling Ferdi"
+yay -S ferdi-bin
