@@ -160,8 +160,14 @@ echo
 
 ## Install Telegram desktop
 ###########################
-###########################
 purpleDots "Telegram Desktop"
 yellowArrows "Instaling Telegram.."
 sudo pacman -S --noconfirm telegram-desktop
+echo
+
+## Install Keepassxc
+####################
+purpleDots "Keepassxc"
+yellowArrows "Instaling Keepassxc.."
+sudo pacman -S --noconfirm Keepassxc
 echo
