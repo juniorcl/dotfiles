@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 
-purpleDots()
+Topic()
 {
     echo -e "\e[1;35m::\e[0m \e[1m$1\e[0m"
 }
@@ -13,14 +13,14 @@ yellowArrows()
 
 ## Preprocessing
 ################
-purpleDots "General Instalations"
+Topic "General Instalations"
 yellowArrows "Instaling base-devel.."
 sudo pacman -S --noconfirm base-devel
 echo
 
 ## Instaling ZSH and setting up ZSH
 ###################################
-purpleDots "Zsh"
+Topic "Zsh"
 yellowArrows "Instaling Zsh.."
 sudo pacman -S --noconfirm zsh
 echo
@@ -35,7 +35,7 @@ echo
 
 ## Pyenv Install
 ################
-purpleDots "Pyenv"
+Topic "Pyenv"
 yellowArrows "Clonando pyenv.."
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 echo
@@ -51,7 +51,7 @@ echo
 
 ## Intalling yay
 ################
-purpleDots "Yay"
+Topic "Yay"
 yellowArrows "Cloning yay.."
 git clone https://aur.archlinux.org/yay.git ~/.yay
 echo
@@ -64,14 +64,14 @@ echo
 
 ## Instaling vscode
 ####################
-purpleDots "Visual Studio Code"
+Topic "Visual Studio Code"
 yellowArrows "Instaling vscode.."
 yay -S visual-studio-code-bin
 echo
 
 ## Instaling Firefox in pt-br
 ##############################
-purpleDots "Firefox"
+Topic "Firefox"
 yellowArrows "Instaling firefox.."
 sudo pacman -S --noconfirm firefox
 echo
@@ -82,14 +82,14 @@ echo
 
 ## Instaling hack font
 #######################
-purpleDots "Hack Font"
+Topic "Hack Font"
 yellowArrows "Instaling hack font.."
 sudo pacman -S --noconfirm ttf-hack
 echo
 
 ## UnInstaling Midori Brownser
 ###############################
-purpleDots "Midori"
+Topic "Midori"
 
 if [ -e "$(which midori 2> /dev/null)" ]
 then
@@ -105,7 +105,7 @@ echo
 
 ## Uninstaling Parole Media
 ########################### 
-purpleDots "Parole"
+Topic "Parole"
 
 if [ -e "$(which parole 2> /dev/null)" ]
 then
@@ -121,21 +121,21 @@ echo
 
 ## Instaling qBitorrent
 ########################
-purpleDots "qBitorrent"
+Topic "qBitorrent"
 yellowArrows "Instaling qBittorrent.."
 sudo pacman -S --noconfirm qbittorrent
 echo
 
 ## Install Materia Theme
 ########################
-purpleDots "Materia Theme"
+Topic "Materia Theme"
 yellowArrows "Instaling Materia Theme.."
 yay -S materia-gtk-theme
 echo
 
 ## Install R
 ############
-purpleDots "R Language"
+Topic "R Language"
 yellowArrows "Instaling R.."
 sudo pacman -S --noconfirm r
 echo
@@ -146,35 +146,35 @@ echo
 
 ## Install VLC
 ##############
-purpleDots "VLC Media Player"
+Topic "VLC Media Player"
 yellowArrows "Instaling vlc.."
 sudo pacman -S vlc
 echo
 
 ## Install ferdi
 ################
-purpleDots "Ferdi"
+Topic "Ferdi"
 yellowArrows "Instaling Ferdi.."
 yay -S ferdi-bin
 echo
 
 ## Install Telegram desktop
 ###########################
-purpleDots "Telegram Desktop"
+Topic "Telegram Desktop"
 yellowArrows "Instaling Telegram.."
 sudo pacman -S --noconfirm telegram-desktop
 echo
 
 ## Install Keepassxc
 ####################
-purpleDots "Keepassxc"
+Topic "Keepassxc"
 yellowArrows "Instaling Keepassxc.."
 sudo pacman -S --noconfirm Keepassxc
 echo
 
 ## Install Dropbox
 ##################
-purpleDots "Dropbox"
+Topic "Dropbox"
 yellowArrows "Instaling Dropbox.."
 yay -S dropbox
 echo
