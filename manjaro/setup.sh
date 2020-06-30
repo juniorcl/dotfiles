@@ -171,3 +171,10 @@ purpleDots "Keepassxc"
 yellowArrows "Instaling Keepassxc.."
 sudo pacman -S --noconfirm Keepassxc
 echo
+
+## Install Dropbox
+##################
+purpleDots "Dropbox"
+yellowArrows "Instaling Dropbox.."
+yay -S dropbox
+echo
