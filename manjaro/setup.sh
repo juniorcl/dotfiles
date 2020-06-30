@@ -154,5 +154,14 @@ echo
 ## Install ferdi
 ################
 purpleDots "Ferdi"
-yellowArrows "Instaling Ferdi"
+yellowArrows "Instaling Ferdi.."
 yay -S ferdi-bin
+echo
+
+## Install Telegram desktop
+###########################
+###########################
+purpleDots "Telegram Desktop"
+yellowArrows "Instaling Telegram.."
+sudo pacman -S --noconfirm telegram-desktop
+echo
