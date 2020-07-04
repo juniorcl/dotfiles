@@ -13,4 +13,6 @@ subTopic()
 
 ## Instalação Vscode
 ####################
+Topic "VScode"
+subTopic "Instaling VScode.."
 sudo snap install --classic code
