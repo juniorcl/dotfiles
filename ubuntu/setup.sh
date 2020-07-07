@@ -14,11 +14,20 @@ subTopic()
 ## Instalation Vim
 ##################
 Topic "Vim"
-subTopic "Instaling Vim"
+subTopic "Instaling Vim.."
 sudo apt install vim
+echo
 
 ## Instalation Vscode
 ####################
 Topic "VScode"
 subTopic "Instaling VScode.."
 sudo snap install --classic code
+echo
+
+## Instalation VLC
+##################
+Topic "VLC"
+subTopic "Instaling VLC.."
+sudo snap install vlc
+echo
