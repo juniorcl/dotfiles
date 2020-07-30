@@ -48,10 +48,16 @@ subTopic "Add pyenv init to your shell.."
 echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bashrc
 echo
 
+## Instalation KeePassXC
+Topic "KeePassXC"
+subTopic "Instaling KeePassXC"
+sudo snap install keepassxc
+echo
+
 ## Instalation R
 ################
 Topic "R"
-subTopic "instaling R.."
+subTopic "Instaling R.."
 sudo apt install r-base
 echo
 
