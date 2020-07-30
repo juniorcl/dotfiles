@@ -7,7 +7,7 @@ This is a shell script created for configuration my desktop. This can be used fo
 #### Supported OSs
 - ArchLinux (coming soon)
 - Manjaro 
-- Ubuntu (coming soon)
+- Ubuntu
 
 ## Usage
 Create a folder called "Github" on your `$HOME`, clone the repository inside it and execute the [install.sh](install.sh). You can execute the commands below to run the script.
