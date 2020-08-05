@@ -85,6 +85,13 @@ subTopic "Instaling KeePassXC"
 sudo snap install keepassxc
 echo
 
+## Instalation Slack
+####################
+Topic "Slack"
+subTopic "Instaling Slack"
+sudo snap install slack --classic
+echo
+
 ## Instalation R
 ################
 Topic "R"
