@@ -92,6 +92,13 @@ subTopic "Instaling Slack"
 sudo snap install slack --classic
 echo
 
+## Instalation spotify
+######################
+Topic "Spotify"
+subTopic "Instaling Spotify"
+sudo snap spotify
+echo
+
 ## Instalation R
 ################
 Topic "R"
