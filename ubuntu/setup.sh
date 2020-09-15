@@ -106,10 +106,9 @@ subTopic "Instaling R.."
 sudo apt install r-base
 echo
 
-subTopic "Downloading RStudio.."
-sudo wget https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.3.959-amd64.deb
-echo
-
-subTopic "Instaling RStudio.."
-sudo dpkg -i rstudio-1.3.959-amd64.deb.deb
+## INstalation qBittorrent
+##########################
+Topic "qBittorrent"
+subTopic "Instaling qBittorrent"
+sudo apt install qbittorrent
 echo
