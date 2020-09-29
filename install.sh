@@ -31,6 +31,24 @@ Ubuntu ()
     echo -e "\e[1mNice! Initializing Ubuntu setup.\e[0m"
     sleep 1
     source $DOTFILES/ubuntu/setup.sh
+    echo
+
+    echo -e "\e[1mInstall DevPack? [y/N]\e[0m"
+    read RESP
+    echo
+
+    if [ $RESP == "y" ]; then
+    
+        echo -e "\e[1mOk! Initializing DevPack\e[0m"
+        sleep 1
+        source $DOTFILES/ubuntu/devpack.sh
+    
+    else
+        
+        echo -e "\e[1mInstalation finished!\e[0m"
+
+    fi
+
 }
 
 ArchLinux ()

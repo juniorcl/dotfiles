@@ -48,36 +48,6 @@ subTopic "Add pyenv init to your shell.."
 echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bashrc
 echo
 
-## Instaling npm
-################
-Topic "nvm"
-subTopic "Instaling nvm"
-wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-echo
-
-## Instaling yarn
-#################
-Topic "Yarn"
-subTopic "Instaling curl"
-sudo apt install curl
-echo
-
-subTopic "Configuring the repository"
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-echo
-
-subTopic "Updating and Instaling"
-sudo apt update && sudo apt install yarn
-echo
-
-## Instaling Insomnia
-#####################
-Topic "Insomnia"
-subTopic "Instaling"
-sudo snap install insomnia
-echo
-
 ## Instalation KeePassXC
 ########################
 Topic "KeePassXC"
@@ -106,7 +76,7 @@ subTopic "Instaling R.."
 sudo apt install r-base
 echo
 
-## INstalation qBittorrent
+## Instalation qBittorrent
 ##########################
 Topic "qBittorrent"
 subTopic "Instaling qBittorrent"
